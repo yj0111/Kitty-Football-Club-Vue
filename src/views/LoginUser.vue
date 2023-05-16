@@ -1,7 +1,7 @@
 <template>
   <div>
-    <label for="id"></label>
-    <input type="text" id="id" placeholder="아이디" v-model="user_id" />
+    <label for="id-input"></label>
+    <input type="text" id="id-input" placeholder="아이디" v-model="user_id" />
     <label for="pw"></label>
     <input
       type="password"
@@ -9,7 +9,7 @@
       placeholder="비밀번호"
       v-model="user_password"
     />
-    <button></button>
+    <button @click="Login()">로그인</button>
   </div>
 </template>
 

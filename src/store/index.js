@@ -7,9 +7,15 @@ Vue.use(Vuex);
 
 const REST_API = "http://localhost:9999";
 export default new Vuex.Store({
-  state: {},
+  state: {
+    loginData: {},
+  },
   getters: {},
-  mutations: {},
+  mutations: {
+    LOGIN_DATA(state, payload) {
+      state.loginData = payload;
+    },
+  },
   actions: {
     //로그인!!!!!!!!
     Login({ commit }, User) {
@@ -20,12 +26,14 @@ export default new Vuex.Store({
         params: User,
       })
         .then((res) => {
-          if (res != null) {
-            commit;
-            console.log(res);
+          if (res.data) {
+            commit("LOGIN_DATA", res.data);
+
             router.push({ name: "home" });
           } else {
             alert("잘못입력하셨습니다");
+            const input = document.getElementById("id-input");
+            input.focus();
           }
         })
         .catch((err) => {
