@@ -6,6 +6,7 @@
       <router-link :to="{ name: 'getTeam' }">팀구하기 </router-link>
       <router-link :to="{ name: 'myTeam' }">우리팀 </router-link>
       <router-link :to="{ name: 'footballNews' }">축구소식</router-link>
+      <router-link :to="{ name: 'login' }">로그인</router-link>
     </nav>
   </header>
 </template>

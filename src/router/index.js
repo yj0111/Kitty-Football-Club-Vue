@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
-
+import LoginUser from "../views/LoginUser.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -21,14 +21,50 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/myTeam",
-    name: "myTeam",
-    component: HomeView,
-  },
-  {
     path: "/footballNews",
     name: "footballNews",
     component: HomeView,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: LoginUser,
+  },
+  {
+    path: "/signUp",
+    name: "signUp",
+    component: HomeView,
+  },
+  {
+    path: "/myTeam",
+    component: HomeView,
+    children: [
+      {
+        path: ":id",
+        name: "main",
+        component: HomeView,
+      },
+      {
+        path: "schedule",
+        name: "schedule",
+        component: HomeView,
+      },
+      {
+        path: "makeGame",
+        name: "makeGame",
+        component: HomeView,
+      },
+      {
+        path: "record",
+        name: "record",
+        component: HomeView,
+      },
+      {
+        path: "management",
+        name: "management",
+        component: HomeView,
+      },
+    ],
   },
 ];
 
