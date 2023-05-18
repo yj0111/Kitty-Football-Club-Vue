@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <live-chatting></live-chatting>
     <header-nav></header-nav>
     <RouterView></RouterView>
   </div>
@@ -8,10 +9,13 @@
 <script>
 import { RouterView } from "vue-router";
 import HeaderNav from "./components/HeaderNav.vue";
+import LiveChatting from "./components/LiveChatting.vue";
+
 export default {
   components: {
     HeaderNav,
     RouterView,
+    LiveChatting,
   },
 };
 </script>
