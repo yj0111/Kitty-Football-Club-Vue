@@ -9,11 +9,19 @@ const REST_API = "http://localhost:9999";
 export default new Vuex.Store({
   state: {
     loginData: {},
+    videos: [],
+    video: null,
   },
   getters: {},
   mutations: {
     LOGIN_DATA(state, payload) {
       state.loginData = payload;
+    },
+    SEARCH_YOUTUBE(state, videos) {
+      state.videos = videos;
+    },
+    CLICK_VIDEO(state, video) {
+      state.video = video;
     },
   },
   actions: {
@@ -39,6 +47,31 @@ export default new Vuex.Store({
         .catch((err) => {
           console.log(err);
         });
+    },
+
+    //유튜브
+    searchYoutube({ commit }, payload) {
+      const URL = "https://www.googleapis.com/youtube/v3/search";
+      const API_KEY = "AIzaSyBZSH08XpKjDAwshjSXw6UhIeyVraRxTu0";
+      axios({
+        url: URL,
+        method: "GET",
+        params: {
+          key: API_KEY,
+          part: "snippet",
+          q: payload,
+          type: "video",
+          maxResults: 10,
+        },
+      })
+        .then((res) => {
+          commit("SEARCH_YOUTUBE", res.data.items);
+        })
+        .catch((err) => console.log(err));
+    },
+    //payload : 비디오 객체가 들어온다.
+    clickVideo({ commit }, payload) {
+      commit("CLICK_VIDEO", payload);
     },
   },
   modules: {},

@@ -4,6 +4,8 @@
     <header-nav></header-nav>
     <RouterView></RouterView>
     <upload-image></upload-image>
+    <PayBefore></PayBefore>
+    <router-link to="/youtube">Youtube</router-link>
     <h3>카카오 맵</h3>
     <div class="map-area">
       <div class="harbors">
@@ -28,6 +30,7 @@ import LiveChatting from "./components/LiveChatting.vue";
 import KakaoMap from "./components/map/KakaoMap.vue";
 import UploadImage from "./components/UploadImage.vue";
 import api from "./service/api";
+import PayBefore from "./views/PayBefore.vue";
 
 export default {
   mounted() {
@@ -42,6 +45,7 @@ export default {
     LiveChatting,
     KakaoMap,
     UploadImage,
+    PayBefore,
   },
   data() {
     return {
