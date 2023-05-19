@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <go-pay></go-pay>
     <live-chatting></live-chatting>
     <header-nav></header-nav>
     <RouterView></RouterView>
@@ -27,6 +28,10 @@ import HeaderNav from "./components/HeaderNav.vue";
 import LiveChatting from "./components/LiveChatting.vue";
 import KakaoMap from "./components/map/KakaoMap.vue";
 import api from "./service/api";
+<<<<<<< HEAD
+=======
+import goPay from "./components/payment/goPay.vue";
+>>>>>>> 6e3457ade6c440505583b3f15c874ad47e0ada76
 
 export default {
   mounted() {
@@ -40,6 +45,10 @@ export default {
     RouterView,
     LiveChatting,
     KakaoMap,
+<<<<<<< HEAD
+=======
+    goPay,
+>>>>>>> 6e3457ade6c440505583b3f15c874ad47e0ada76
   },
   data() {
     return {
