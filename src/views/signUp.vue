@@ -95,7 +95,11 @@
         placeholder="주소"
       /><br />
 
-      <input type="file" />
+      <div style="text-align: center">
+        <input type="file" ref="fileInput" @change="previewImage" />
+        <img :src="imagePreview" class="image-preview" />
+      </div>
+
       <button @click="signUp" class="signup-button">회원가입</button>
     </form>
   </div>
@@ -114,10 +118,15 @@ export default {
       user_email: "",
       user_birth: "",
       user_address: "",
+      imagePreview: null,
     };
   },
 
   methods: {
+    previewImage(event) {
+      const file = event.target.files[0];
+      this.imagePreview = URL.createObjectURL(file);
+    },
     isValidPhone(phone) {
       const phoneRegex = /^\d{10,11}$/;
       return phoneRegex.test(phone);
@@ -166,7 +175,7 @@ export default {
         },
       }).open();
     },
-    signUp() {
+    signUp(event) {
       if (
         this.user_id === "" ||
         this.user_password === "" ||
@@ -186,6 +195,23 @@ export default {
         return;
       }
 
+      event.preventDefault();
+
+      const file = this.$refs.fileInput.files[0];
+      const formData = new FormData();
+
+      // 사용자 정보 추가
+      formData.append("user_id", this.user_id);
+      formData.append("user_password", this.user_password);
+      formData.append("user_name", this.user_name);
+      formData.append("user_phone", this.user_phone);
+      formData.append("user_email", this.user_email);
+      formData.append("user_birth", this.user_birth);
+      formData.append("user_address", this.user_address);
+
+      // 파일 추가
+      formData.append("file", file);
+
       //유효성 검사 후 통과되면 회원가입 진행
       let User = {
         user_id: this.user_id,
@@ -197,7 +223,7 @@ export default {
         user_address: this.user_address,
       };
       console.log(User);
-      this.$store.dispatch("signUp", User);
+      this.$store.dispatch("signUp", formData);
     },
   },
 };
@@ -256,5 +282,14 @@ export default {
   width: 250px;
   font-size: 13px;
   margin-right: 140px;
+}
+
+.image-preview {
+  text-align: center;
+  max-width: 200px;
+  max-height: 200px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
 }
 </style>

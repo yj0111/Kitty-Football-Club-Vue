@@ -10,6 +10,7 @@ export default new Vuex.Store({
   state: {
     loginData: {},
     signUpData: {},
+    createTeamData: {},
     videos: [],
     video: null,
   },
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     SIGNUP_DATA(state, payload) {
       state.signUpData = payload;
+    },
+    CREATETEAM_DATA(state, payload) {
+      state.createTeamData = payload;
     },
     SEARCH_YOUTUBE(state, videos) {
       state.videos = videos;
@@ -55,16 +59,43 @@ export default new Vuex.Store({
     signUp({ commit }, User) {
       const API_URL = `${REST_API}/kfc/signup`;
       axios({
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
         url: API_URL,
         method: "POST",
-        params: User,
+        data: User,
       })
         .then((res) => {
           if (res.data) {
             commit("SIGNUP_DATA", res.data);
             router.push({ name: "home" });
           } else {
-            alert("회원가입 실패요.");
+            alert("회원가입에 실패하였습니다.");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    //팀 만들기
+    createTeam({ commit }, Team) {
+      const API_URL = `${REST_API}/team/create`;
+      axios({
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        url: API_URL,
+        method: "POST",
+        data: Team,
+      })
+        .then((res) => {
+          if (res.data) {
+            commit("CREATETEAM_DATA", res.data);
+            router.push({ name: "home" });
+          } else {
+            alert("팀 만들기에 실패하였습니다.");
           }
         })
         .catch((err) => {
