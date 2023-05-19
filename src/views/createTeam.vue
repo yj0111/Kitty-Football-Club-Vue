@@ -38,10 +38,6 @@
 </template>
 
 <script>
-import axios from "axios";
-import router from "@/router";
-import { mapState } from "vuex";
-
 export default {
   name: "createTeam",
   data() {
@@ -52,11 +48,7 @@ export default {
       imagePreview: null,
     };
   },
-  computed: {
-    ...mapState({
-      loginData: (state) => state.loginData,
-    }),
-  },
+
   methods: {
     previewImage(event) {
       const file = event.target.files[0];
@@ -89,29 +81,7 @@ export default {
         team_announcement: this.team_announcement,
       };
       console.log(Team);
-      //팀 만들기
-      const REST_API = "http://localhost:9999";
-      const API_URL = `${REST_API}/team/create`;
-
-      axios({
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${sessionStorage.getItem("sessionToken")}`,
-        },
-        url: API_URL,
-        method: "POST",
-        data: formData,
-      })
-        .then((res) => {
-          if (res.data) {
-            router.push({ name: "home" });
-          } else {
-            alert("팀 만들기에 실패하였습니다.");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this.$store.dispatch("createTeam", formData);
     },
   },
 };
