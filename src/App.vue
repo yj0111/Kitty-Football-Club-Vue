@@ -1,10 +1,9 @@
 <template>
   <div id="app">
+    <go-pay></go-pay>
     <live-chatting></live-chatting>
     <header-nav></header-nav>
     <RouterView></RouterView>
-    <upload-image></upload-image>
-    <PayBefore></PayBefore>
     <router-link to="/youtube">Youtube</router-link>
     <h3>카카오 맵</h3>
     <div class="map-area">
@@ -28,9 +27,8 @@ import { RouterView } from "vue-router";
 import HeaderNav from "./components/HeaderNav.vue";
 import LiveChatting from "./components/LiveChatting.vue";
 import KakaoMap from "./components/map/KakaoMap.vue";
-import UploadImage from "./components/UploadImage.vue";
 import api from "./service/api";
-import PayBefore from "./views/PayBefore.vue";
+import goPay from "./components/payment/goPay.vue";
 
 export default {
   mounted() {
@@ -44,8 +42,7 @@ export default {
     RouterView,
     LiveChatting,
     KakaoMap,
-    UploadImage,
-    PayBefore,
+    goPay,
   },
   data() {
     return {
