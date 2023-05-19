@@ -3,9 +3,7 @@ import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginUser from "../views/LoginUser.vue";
 import footballNews from "../views/footballNews.vue";
-import PayBefore from "../views/PayBefore.vue";
-import PcPay from "../views/PcPay.vue";
-import PayComplete from "../views/PayComplete.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -74,21 +72,6 @@ const routes = [
         component: HomeView,
       },
     ],
-  },
-  {
-    path: "/",
-    component: PayBefore,
-    name: "PayBefore",
-  },
-  {
-    path: "/PcPay",
-    component: PcPay,
-    name: "PcPay",
-  },
-  {
-    path: "/PayComplete",
-    component: PayComplete,
-    name: "PayComplete",
   },
 ];
 
