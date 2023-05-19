@@ -1,81 +1,108 @@
 <template>
-  <header>
-    <nav>
-      <div class="links">
-        <div class="logo">
-          <img alt="Vue logo" src="@/assets/logo.png" width="100px" />
-        </div>
-        <div class="link">
-          <router-link :to="{ name: 'createTeam' }">팀만들기</router-link>
-        </div>
-        <div class="link">
-          <router-link :to="{ name: 'getTeam' }">팀구하기</router-link>
-        </div>
-        <div class="link">
-          <router-link :to="{ name: 'myTeam' }">우리팀</router-link>
-        </div>
-        <div class="link">
-          <router-link :to="{ name: 'footballNews' }">축구소식</router-link>
-        </div>
-        <div class="link">
-          <router-link :to="{ name: 'login' }">
-            <b-iconstack font-scale="2.5">
-              <b-icon
-                stacked
-                icon="person-circle"
-                variant="info"
-                scale="0.75"
-              ></b-icon>
-            </b-iconstack>
-          </router-link>
-        </div>
+  <div class="header">
+    <div class="logo">
+      <img
+        alt="Vue logo"
+        src="@/assets/KFC_logo-removebg-preview.png"
+        width="150px"
+      />
+    </div>
+    <div class="link">
+      <router-link :to="{ name: 'createTeam' }" class="routerLink"
+        >팀만들기</router-link
+      >
+    </div>
+    <div class="link">
+      <router-link :to="{ name: 'getTeam' }" class="routerLink"
+        >팀구하기</router-link
+      >
+    </div>
+    <div class="link">
+      <router-link :to="{ name: 'myTeam' }" class="routerLink"
+        >우리팀</router-link
+      >
+    </div>
+    <div class="link">
+      <router-link :to="{ name: 'footballNews' }" class="routerLink"
+        >축구소식</router-link
+      >
+    </div>
+    <div class="btnGroup">
+      <b-icon icon="bell" class="bell" style=""></b-icon>
+      <div class="link">
+        <router-link :to="{ name: 'login' }" class="routerLink loginB">
+          <div v-if="loginData.id">로그아웃</div>
+          <div v-else>로그인</div>
+        </router-link>
       </div>
-    </nav>
-  </header>
+    </div>
+  </div>
 </template>
 
-<script>
-export default {};
+<script scoped>
+import { mapState } from "vuex";
+export default {
+  name: "HeaderNav",
+  computed: {
+    //배열형태라 [] 에 넣어주가
+    ...mapState(["loginData"]),
+  },
+  mounted() {
+    console.log(this.loginData);
+  },
+};
 </script>
 
 <style>
-nav {
-  background-color: white;
-  padding: 30px;
-}
-
-.logo-links {
-  display: flex;
+.header {
+  margin-top: 16px;
   justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
   display: flex;
   align-items: center;
 }
-
-.logo img {
-  margin-right: 10px;
-}
-
-.links {
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-}
-
 .link {
   font-weight: bold;
-  color: #2c3e50;
+  color: #102137;
   text-decoration: none;
 }
-
-.link.router-link-exact-active {
-  color: #42b983;
+.routerLink {
+  font-size: 14px;
+  color: #102137;
+}
+.routerLink:hover {
+  text-decoration: none;
+  color: #8e8e8e; /* 호버 상태일 때의 링크 색상 설정 */
 }
 
-.link:hover {
-  color: #42b983;
+.loginB {
+  color: #102137;
+  min-width: 69px;
+  height: 30px;
+  margin: 0px 2px;
+  padding: 0px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  border: 2px solid rgb(68, 68, 68);
+  border-radius: 17px;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  transition: border 0.4s ease 0s, background-color 0.4s ease 0s,
+    top 0.2s ease 0s;
+}
+.btnGroup {
+  display: flex;
+  align-items: center;
+}
+.bell {
+  width: 25px;
+  height: 25px;
+  margin-right: 11px;
+  color: #102137;
+}
+.bell:hover,
+.logo:hover {
+  cursor: pointer;
 }
 </style>

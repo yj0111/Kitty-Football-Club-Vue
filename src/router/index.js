@@ -3,10 +3,7 @@ import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginUser from "../views/LoginUser.vue";
 import footballNews from "../views/footballNews.vue";
-<<<<<<< HEAD
 
-=======
->>>>>>> 6e3457ade6c440505583b3f15c874ad47e0ada76
 Vue.use(VueRouter);
 
 const routes = [
