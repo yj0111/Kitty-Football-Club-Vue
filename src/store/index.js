@@ -55,9 +55,12 @@ export default new Vuex.Store({
     signUp({ commit }, User) {
       const API_URL = `${REST_API}/kfc/signup`;
       axios({
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
         url: API_URL,
         method: "POST",
-        params: User,
+        data: User,
       })
         .then((res) => {
           if (res.data) {

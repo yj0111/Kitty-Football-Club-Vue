@@ -95,7 +95,7 @@
         placeholder="주소"
       /><br />
 
-      <input type="file" />
+      <input type="file" ref="fileInput" />
       <button @click="signUp" class="signup-button">회원가입</button>
     </form>
   </div>
@@ -166,7 +166,7 @@ export default {
         },
       }).open();
     },
-    signUp() {
+    signUp(event) {
       if (
         this.user_id === "" ||
         this.user_password === "" ||
@@ -186,6 +186,23 @@ export default {
         return;
       }
 
+      event.preventDefault();
+
+      const file = this.$refs.fileInput.files[0];
+      const formData = new FormData();
+
+      // 사용자 정보 추가
+      formData.append("user_id", this.user_id);
+      formData.append("user_password", this.user_password);
+      formData.append("user_name", this.user_name);
+      formData.append("user_phone", this.user_phone);
+      formData.append("user_email", this.user_email);
+      formData.append("user_birth", this.user_birth);
+      formData.append("user_address", this.user_address);
+
+      // 파일 추가
+      formData.append("file", file);
+
       //유효성 검사 후 통과되면 회원가입 진행
       let User = {
         user_id: this.user_id,
@@ -197,7 +214,7 @@ export default {
         user_address: this.user_address,
       };
       console.log(User);
-      this.$store.dispatch("signUp", User);
+      this.$store.dispatch("signUp", formData);
     },
   },
 };
