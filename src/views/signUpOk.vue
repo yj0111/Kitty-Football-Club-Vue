@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h2>팀만들기 페이지입니다</h2>
-  </div>
+  <h2>아오 졸려</h2>
 </template>
 
 <script>

@@ -3,10 +3,10 @@ import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginUser from "../views/LoginUser.vue";
 import footballNews from "../views/footballNews.vue";
-<<<<<<< HEAD
-
-=======
->>>>>>> 6e3457ade6c440505583b3f15c874ad47e0ada76
+import createTeam from "../views/createTeam.vue";
+import getTeam from "../views/getTeam.vue";
+import signUp from "../views/signUp.vue";
+import signUpOk from "../views/signUpOk.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -18,12 +18,12 @@ const routes = [
   {
     path: "/createTeam",
     name: "createTeam",
-    component: HomeView,
+    component: createTeam,
   },
   {
     path: "/getTeam",
     name: "getTeam",
-    component: HomeView,
+    component: getTeam,
   },
   {
     path: "/footballNews",
@@ -38,7 +38,12 @@ const routes = [
   {
     path: "/signUp",
     name: "signUp",
-    component: HomeView,
+    component: signUp,
+  },
+  {
+    path: "/signUpOk",
+    name: "signUpOk",
+    component: signUpOk,
   },
   // {
   //   path: "/youtube",

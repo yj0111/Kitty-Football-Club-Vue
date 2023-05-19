@@ -9,6 +9,7 @@ const REST_API = "http://localhost:9999";
 export default new Vuex.Store({
   state: {
     loginData: {},
+    signUpData: {},
     videos: [],
     video: null,
   },
@@ -16,6 +17,9 @@ export default new Vuex.Store({
   mutations: {
     LOGIN_DATA(state, payload) {
       state.loginData = payload;
+    },
+    SIGNUP_DATA(state, payload) {
+      state.signUpData = payload;
     },
     SEARCH_YOUTUBE(state, videos) {
       state.videos = videos;
@@ -36,10 +40,9 @@ export default new Vuex.Store({
         .then((res) => {
           if (res.data) {
             commit("LOGIN_DATA", res.data);
-
             router.push({ name: "home" });
           } else {
-            alert("잘못입력하셨습니다");
+            alert("잘못 입력 하셨습니다.");
             const input = document.getElementById("id-input");
             input.focus();
           }
@@ -48,7 +51,26 @@ export default new Vuex.Store({
           console.log(err);
         });
     },
-
+    //회원가입
+    signUp({ commit }, User) {
+      const API_URL = `${REST_API}/kfc/signup`;
+      axios({
+        url: API_URL,
+        method: "POST",
+        params: User,
+      })
+        .then((res) => {
+          if (res.data) {
+            commit("SIGNUP_DATA", res.data);
+            router.push({ name: "home" });
+          } else {
+            alert("회원가입 실패요.");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     //유튜브
     searchYoutube({ commit }, payload) {
       const URL = "https://www.googleapis.com/youtube/v3/search";
