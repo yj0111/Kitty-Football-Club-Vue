@@ -95,7 +95,11 @@
         placeholder="주소"
       /><br />
 
-      <input type="file" ref="fileInput" />
+      <div style="text-align: center">
+        <input type="file" ref="fileInput" @change="previewImage" />
+        <img :src="imagePreview" class="image-preview" />
+      </div>
+
       <button @click="signUp" class="signup-button">회원가입</button>
     </form>
   </div>
@@ -114,10 +118,15 @@ export default {
       user_email: "",
       user_birth: "",
       user_address: "",
+      imagePreview: null,
     };
   },
 
   methods: {
+    previewImage(event) {
+      const file = event.target.files[0];
+      this.imagePreview = URL.createObjectURL(file);
+    },
     isValidPhone(phone) {
       const phoneRegex = /^\d{10,11}$/;
       return phoneRegex.test(phone);
@@ -273,5 +282,14 @@ export default {
   width: 250px;
   font-size: 13px;
   margin-right: 140px;
+}
+
+.image-preview {
+  text-align: center;
+  max-width: 200px;
+  max-height: 200px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
 }
 </style>
