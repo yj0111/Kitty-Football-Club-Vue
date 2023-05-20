@@ -10,7 +10,6 @@ export default new Vuex.Store({
   state: {
     loginData: {},
     signUpData: {},
-    createTeamData: {},
     videos: [],
     video: null,
   },
@@ -22,9 +21,7 @@ export default new Vuex.Store({
     SIGNUP_DATA(state, payload) {
       state.signUpData = payload;
     },
-    CREATETEAM_DATA(state, payload) {
-      state.createTeamData = payload;
-    },
+
     SEARCH_YOUTUBE(state, videos) {
       state.videos = videos;
     },
@@ -35,14 +32,19 @@ export default new Vuex.Store({
   actions: {
     //로그인!!!!!!!!
     Login({ commit }, User) {
+      console.log(User);
+
       const API_URL = `${REST_API}/kfc/login`;
       axios({
         url: API_URL,
         method: "POST",
         params: User,
+
+        withCredentials: true,
       })
         .then((res) => {
-          if (res.data) {
+          if (res.data.message == "success") {
+            console.log(res.data);
             commit("LOGIN_DATA", res.data);
             router.push({ name: "home" });
           } else {
@@ -79,29 +81,6 @@ export default new Vuex.Store({
         });
     },
 
-    //팀 만들기
-    createTeam({ commit }, Team) {
-      const API_URL = `${REST_API}/team/create`;
-      axios({
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        url: API_URL,
-        method: "POST",
-        data: Team,
-      })
-        .then((res) => {
-          if (res.data) {
-            commit("CREATETEAM_DATA", res.data);
-            router.push({ name: "home" });
-          } else {
-            alert("팀 만들기에 실패하였습니다.");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
     //유튜브
     searchYoutube({ commit }, payload) {
       const URL = "https://www.googleapis.com/youtube/v3/search";

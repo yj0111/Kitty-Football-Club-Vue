@@ -31,7 +31,7 @@
       <b-icon icon="bell" class="bell" style=""></b-icon>
       <div class="link">
         <router-link :to="{ name: 'login' }" class="routerLink loginB">
-          <div v-if="loginData.id">로그아웃</div>
+          <div v-if="jsessionId">로그아웃</div>
           <div v-else>로그인</div>
         </router-link>
       </div>
@@ -43,13 +43,47 @@
 import { mapState } from "vuex";
 export default {
   name: "HeaderNav",
+  data() {
+    return {
+      jsessionId: "",
+    };
+  },
   computed: {
     //배열형태라 [] 에 넣어주가
     ...mapState(["loginData"]),
   },
-  mounted() {
-    console.log(this.loginData);
+  watch: {
+    loginData: {
+      handler: "handleLoginSuccess",
+      immediate: true,
+    },
   },
+  methods: {
+    handleLoginSuccess() {
+      const jsessionIdCookie = document.cookie
+        .split("; ")
+        .find((cookie) => cookie.startsWith("JSESSIONID="));
+
+      if (jsessionIdCookie) {
+        const jsessionId = jsessionIdCookie.split("=")[1];
+        this.jsessionId = jsessionId;
+        console.log(jsessionId);
+      }
+    },
+  },
+
+  // mounted() {
+  //   //이거 로그인 동작 수행하면 실행되게 바꿔야 함
+  //   const jsessionIdCookie = document.cookie
+  //     .split("; ")
+  //     .find((cookie) => cookie.startsWith("JSESSIONID="));
+
+  //   if (jsessionIdCookie) {
+  //     const jsessionId = jsessionIdCookie.split("=")[1];
+  //     this.jsessionId = jsessionId;
+  //     console.log(jsessionId);
+  //   }
+  // },
 };
 </script>
 

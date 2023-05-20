@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import axios from "axios";
+import router from "@/router";
 export default {
   name: "createTeam",
   data() {
@@ -81,7 +83,46 @@ export default {
         team_announcement: this.team_announcement,
       };
       console.log(Team);
-      this.$store.dispatch("createTeam", formData);
+
+      //팀 만들기
+      const REST_API = "http://localhost:9999";
+      const API_URL = `${REST_API}/team/create`;
+
+      const jsessionIdCookie = document.cookie
+        .split("; ")
+        .find((cookie) => cookie.startsWith("JSESSIONID="));
+      let jsessionId = "";
+      if (jsessionIdCookie) {
+        jsessionId = jsessionIdCookie.split("=")[1];
+        console.log(jsessionId);
+      }
+      axios({
+        headers: {
+          Cookie: `JSESSIONID=${jsessionId}`,
+          "Content-Type": "multipart/form-data",
+        },
+        url: API_URL,
+        method: "POST",
+        data: formData,
+        withCredentials: true,
+      })
+        .then((res) => {
+          if (res.data) {
+            router.push({ name: "home" });
+          } else {
+            alert("팀 만들기에 실패하였습니다.");
+          }
+        })
+        .catch((error) => {
+          if (error.response.status === 401) {
+            // 401 Unauthorized 에러 처리
+            alert("로그인이 필요한 서비스 입니다");
+            router.push({ name: "login" });
+          } else {
+            // 다른 에러 처리
+            console.error(error);
+          }
+        });
     },
   },
 };
