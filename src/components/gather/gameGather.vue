@@ -1,44 +1,49 @@
 <template>
-  <div>
-    <h4 class="team_list_h4">게임 주최</h4>
-    <div class="container">
-      <form @submit.prevent="submitForm" class="gameGather">
-        <label for="gather_date">날짜를 선택하세요:</label>
-        <input type="date" id="gather_date" v-model="gather_date" />
+  <div class="container">
+    <div class="gameGather">
+      <h4 class="team_list_h4">경기 공고 등록</h4>
+      <label for="gather_date">경기 일시</label>
+      <input
+        type="datetime-local"
+        id="gather_date"
+        v-model="gather_date"
+        required
+      />
 
-        <label for="stadium">경기장을 선택하세요:</label>
-        <select id="stadium" v-model="selectedStadium">
-          <option
-            v-for="stadium in stadiums"
-            :key="stadium.seq"
-            :value="stadium.seq"
-          >
-            {{ stadium.stadium_name }}
-          </option>
-        </select>
+      <label for="stadium">경기장 선택</label>
+      <select id="stadium" v-model="selectedStadium" required>
+        <option
+          v-for="stadium in stadiums"
+          :key="stadium.seq"
+          :value="stadium.seq"
+        >
+          {{ stadium.stadium_name }}
+        </option>
+      </select>
 
-        <div v-if="selectedStadium">
-          <p>이미지: {{ selectedStadiumInfo.stadium_img }}</p>
-          <p>가격: {{ selectedStadiumInfo.stadium_price }}</p>
-          <p>위치</p>
-          <div class="mapInfo">
-            <KakaoMap class="kmap" :options="mapOption"></KakaoMap>
-            <p style="height: 30px">
-              {{ selectedStadiumInfo.stadium_address }}
-            </p>
-          </div>
+      <div v-if="selectedStadium">
+        <p>이미지: {{ selectedStadiumInfo.stadium_img }}</p>
+        <p>가격: {{ selectedStadiumInfo.stadium_price }}</p>
+        <p>위치</p>
+        <div class="mapInfo">
+          <KakaoMap class="kmap" :options="mapOption"></KakaoMap>
+          <p style="height: 30px">
+            {{ selectedStadiumInfo.stadium_address }}
+          </p>
         </div>
-        <label for="gather_announcement"></label>
-        <textarea
-          id="gather_announcement"
-          v-model="gather_announcement"
-          placeholder="모집공고 입력하세요."
-          style="width: 400px; height: 100px"
-        ></textarea>
-        <span v-if="gather_announcement === ''">모집공고 입력해주세요</span>
+      </div>
 
-        <button @click="gameGather" class="gameGather-button">등록하기</button>
-      </form>
+      <label for="gather_announcement">공고를 입력하세요:</label>
+      <textarea
+        id="gather_announcement"
+        v-model="gather_announcement"
+        placeholder="모집공고를 입력하세요."
+        style="width: 400px; height: 100px"
+        required
+      ></textarea>
+      <span v-if="gather_announcement === ''">모집공고를 입력해주세요</span>
+
+      <button @click="gameGather" class="gameGather-button">등록하기</button>
     </div>
   </div>
 </template>
@@ -47,6 +52,7 @@
 import axios from "axios";
 import router from "@/router";
 import KakaoMap from "@/components/map/KakaoMap.vue";
+
 export default {
   name: "gameGather",
   components: {
@@ -115,74 +121,82 @@ export default {
     };
   },
   methods: {
-    gameGather(event) {
-      // if (this.gather_date === "" || this.gather_announcement === "") {
-      //   alert("모든 항목을 입력해주세요");
-      //   return;
-      // }
-      // event.preventDefault();
-      // //공고 올리기
-      // const REST_API = "http://localhost:9999";
-      // const API_URL = `${REST_API}/gather/make`;
-      // // 등록하기 버튼 클릭 시 실행되는 함수
-      // // 여기에 등록 로직을 작성하세요.
-      // const jsessionIdCookie = document.cookie
-      //   .split("; ")
-      //   .find((cookie) => cookie.startsWith("JSESSIONID="));
-      // let jsessionId = "";
-      // if (jsessionIdCookie) {
-      //   jsessionId = jsessionIdCookie.split("=")[1];
-      //   console.log(jsessionId);
-      // }
-      // axios({
-      //   headers: {
-      //     Cookie: `JSESSIONID=${jsessionId}`,
-      //   },
-      //   url: API_URL,
-      //   method: "POST",
-      //   withCredentials: true,
-      // })
-      //   .then((res) => {
-      //     if (res.data) {
-      //       router.push({ name: "home" });
-      //     } else {
-      //       alert("팀 공고 만들기에 실패하였습니다.");
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     if (error.response.status === 401) {
-      //       // 401 Unauthorized 에러 처리
-      //       alert("로그인이 필요한 서비스 입니다");
-      //       router.push({ name: "login" });
-      //     } else {
-      //       // 다른 에러 처리
-      //       console.error(error);
-      //     }
-      //   });
+    gameGather() {
+      console.log(this.selectedStadium);
+      console.log(this.gather_date);
+      console.log(typeof this.gather_date);
+
+      console.log(this.gather_announcement);
+      if (this.gather_date === "" || this.gather_announcement === "") {
+        alert("모든 항목을 입력해주세요.");
+        return;
+      }
+
+      // 공고 올리기
+      const API_URL = "http://localhost:9999/gather/make";
+      const jsessionIdCookie = document.cookie
+        .split("; ")
+        .find((cookie) => cookie.startsWith("JSESSIONID="));
+      let jsessionId = "";
+      if (jsessionIdCookie) {
+        jsessionId = jsessionIdCookie.split("=")[1];
+      }
+      axios({
+        headers: {
+          //"Content-Type": "application/x-www-form-urlencoded",
+          Cookie: `JSESSIONID=${jsessionId}`,
+        },
+        url: API_URL,
+        method: "POST",
+        withCredentials: true,
+        data: {
+          gather_date: this.gather_date,
+          stadium_id: this.selectedStadium,
+          gather_announcement: this.gather_announcement,
+        },
+      })
+        .then((res) => {
+          if (res.data) {
+            router.push({ name: "home" });
+          } else {
+            alert("팀 공고 만들기에 실패하였습니다.");
+          }
+        })
+        .catch((error) => {
+          if (error.response.status === 401) {
+            // 401 Unauthorized 에러 처리
+            alert("로그인이 필요한 서비스입니다.");
+            router.push({ name: "login" });
+          } else {
+            // 다른 에러 처리
+            console.error(error);
+          }
+        });
     },
   },
   watch: {
     selectedStadium(value) {
-      // // 경기장 선택이 변경될 때마다 실행되는 함수
-      // if (value) {
-      //   this.selectedStadiumInfo = this.stadiums.find(
-      //     (stadium) => stadium.seq === value
-      //   );
-      //   this.mapOption.center = {
-      //     lat: this.selectedStadiumInfo.lat,
-      //     lng: this.selectedStadiumInfo.lng,
-      //   };
-      // } else {
-      //   this.selectedStadiumInfo = {};
-      //   this.mapOption.center = {
-      //     lat: 37.501477,
-      //     lng: 127.03966,
-      //   };
-      // }
+      // 경기장 선택이 변경될 때마다 실행되는 함수
+      if (value) {
+        this.selectedStadiumInfo = this.stadiums.find(
+          (stadium) => stadium.seq === value
+        );
+        this.mapOption.center = {
+          lat: this.selectedStadiumInfo.lat,
+          lng: this.selectedStadiumInfo.lng,
+        };
+      } else {
+        this.selectedStadiumInfo = {};
+        this.mapOption.center = {
+          lat: 37.501477,
+          lng: 127.03966,
+        };
+      }
     },
   },
 };
 </script>
+
 <style scoped>
 .team_list_h4 {
   text-align: center;

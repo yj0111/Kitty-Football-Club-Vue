@@ -7,7 +7,9 @@ import createTeam from "../views/createTeam.vue";
 import getTeam from "../views/getTeam.vue";
 import signUp from "../views/signUp.vue";
 import signUpOk from "../views/signUpOk.vue";
+import myTeam from "../views/myTeam.vue";
 import gameGather from "../views/teamGather.vue";
+import listGather from "../views/listGather.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -53,22 +55,22 @@ const routes = [
   // },
   {
     path: "/myTeam",
-    component: gameGather,
+    component: myTeam,
     children: [
+      // {
+      //   path: ":id",
+      //   name: "main",
+      //   component: HomeView,
+      // },
       {
-        path: ":id",
-        name: "main",
-        component: HomeView,
+        path: "gatherList",
+        name: "gatherList",
+        component: listGather,
       },
       {
-        path: "schedule",
-        name: "schedule",
-        component: HomeView,
-      },
-      {
-        path: "makeGame",
-        name: "makeGame",
-        component: HomeView,
+        path: "gameGather",
+        name: "gameGather",
+        component: gameGather,
       },
       {
         path: "record",
