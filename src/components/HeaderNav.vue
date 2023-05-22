@@ -1,11 +1,13 @@
 <template>
   <div class="header">
     <div class="logo">
-      <img
-        alt="Vue logo"
-        src="@/assets/KFC_logo-removebg-preview.png"
-        width="150px"
-      />
+      <router-link :to="{ name: 'home' }" class="routerLink">
+        <img
+          alt="Vue logo"
+          src="@/assets/KFC_logo-removebg-preview.png"
+          width="150px"
+        />
+      </router-link>
     </div>
     <div class="link">
       <router-link :to="{ name: 'createTeam' }" class="routerLink"

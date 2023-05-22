@@ -1,11 +1,17 @@
 <template>
   <div id="app">
-    유저이름:
-    <input v-model="userName" type="text" />
-    내용: <input v-model="message" type="text" @keyup="sendMessage" />
-    <div v-for="(item, idx) in recvList" :key="idx">
-      <h3>유저이름: {{ item.userName }}</h3>
-      <h3>내용: {{ item.content }}</h3>
+    <div>
+      <div class="imgBox">
+        <img :src="require(`@/assets/${user_pic}`)" alt="" class="teamLogo" />
+      </div>
+      {{ userName }}
+
+      <!-- <input v-model="userName" type="text" /> -->
+      : <input v-model="message" type="text" @keyup="sendMessage" />
+      <div v-for="(item, idx) in recvList" :key="idx">
+        <h3>{{ item.userName }}</h3>
+        <h4>{{ item.content }}</h4>
+      </div>
     </div>
   </div>
 </template>
@@ -13,15 +19,33 @@
 <script>
 import Stomp from "webstomp-client";
 import SockJS from "sockjs-client";
-
+import { mapState } from "vuex";
 export default {
   name: "LiveChatting",
   data() {
     return {
-      userName: "",
       message: "",
       recvList: [],
     };
+  },
+  computed: {
+    ...mapState(["loginData"]),
+    user_pic() {
+      return this.loginData.user_pic;
+    },
+    userName() {
+      return this.loginData.user_name;
+    },
+  },
+  mounted() {
+    const storedLoginData = localStorage.getItem("loginData");
+    console.log(storedLoginData);
+    if (storedLoginData) {
+      const loginData = JSON.parse(storedLoginData);
+
+      this.$store.commit("LOGIN_DATA", loginData);
+      console.log(this.userName);
+    }
   },
   created() {
     // App.vue가 생성되면 소켓 연결을 시도합니다.
@@ -74,3 +98,16 @@ export default {
   },
 };
 </script>
+<style scoped>
+.imgBox {
+  width: 45px;
+  height: 45px;
+  border-radius: 70%;
+  overflow: hidden;
+}
+.teamLogo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>
