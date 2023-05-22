@@ -10,7 +10,6 @@
     </div>
     <team-list @box-clicked="openModal"></team-list>
     <team-modal v-if="showModal" @close="closeModal">
-      <p>모달입니다!!모달입니다!!모달입니다!!</p>
       <teamDetail :teamId="selectedTeamId"></teamDetail>
       <UserList :teamId="selectedTeamId"></UserList>
       <!-- userList.vue에 team_id 값을 전달 -->

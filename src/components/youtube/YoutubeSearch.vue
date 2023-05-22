@@ -2,7 +2,7 @@
   <div class="button-group">
     <button
       class="custom-button"
-      @click="setKeywordAndSearch('[2023 K리그1] 14R ')"
+      @click="setKeywordAndSearch('쿠팡플레이 [2023 K리그1] 14R  vs ')"
     >
       K리그
     </button>
