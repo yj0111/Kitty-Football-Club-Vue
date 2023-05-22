@@ -7,7 +7,11 @@ import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 // Import Bootstrap and BootstrapVue CSS files (order is important)
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+import VueKakaoSdk from "vue-kakao-sdk";
 
+const apiKey = "35fa0a44751523be90575933e55a920e";
+Vue.use(VueKakaoSdk, { apiKey }); // apiKey 를 반드시 입력해줘야한다.
+window.Kakao.init("35fa0a44751523be90575933e55a920e");
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin

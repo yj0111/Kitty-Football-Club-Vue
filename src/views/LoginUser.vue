@@ -32,7 +32,7 @@
       >
     </div>
     <div class="text-center">
-      <a id="kakao-login-btn">
+      <a id="kakao-login-btn" @click="kakaoLogin()">
         <img
           src="@/assets/kakao_login.png"
           width="400px"
@@ -67,6 +67,9 @@ export default {
         user_password: this.user_password,
       };
       this.$store.dispatch("Login", User);
+    },
+    kakaoLogin() {
+      this.$store.dispatch("kakaoLogin");
     },
   },
 };
