@@ -17,10 +17,12 @@ export default new Vuex.Store({
   mutations: {
     LOGIN_DATA(state, payload) {
       state.loginData = payload;
-      console.log("dat2a" + state.loginData);
+      localStorage.setItem("loginData", JSON.stringify(payload));
+      console.log(state.loginData);
     },
     LOGOUT_DATA(state) {
       state.loginData = {};
+      localStorage.removeItem("loginData");
       console.log("data" + state.loginData);
     },
     SIGNUP_DATA(state, payload) {
@@ -78,6 +80,7 @@ export default new Vuex.Store({
           if (res.data.message == "success") {
             commit("LOGOUT_DATA");
             router.replace({ name: "login" });
+            location.reload();
           } else {
             alert("로그아웃 실패.");
           }
