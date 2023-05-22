@@ -21,6 +21,7 @@
       <div style="font-size: 14px; font-weight: 600; margin-top: 20px">
         구장시설
       </div>
+
       <div class="iconContainer">
         <div class="icon">
           <div class="icon-wrap">
@@ -115,6 +116,9 @@
       <div style="font-size: 14px; font-weight: 600; margin-top: 20px">
         구장위치
       </div>
+      <div class="mapInfo">
+        <KakaoMap class="kmap" :options="mapOption"></KakaoMap>
+      </div>
       <div class="textwrap">
         <div
           style="
@@ -155,13 +159,70 @@
 
 <script>
 import axios from "axios";
-
+import KakaoMap from "@/components/map/KakaoMap.vue";
 export default {
   name: "gatherDetail",
+  components: {
+    KakaoMap,
+  },
   props: ["gatherId"],
   data() {
     return {
       details: {},
+      stadiums: [
+        {
+          seq: 1,
+          stadium_name: "방배배수지체육공원",
+          stadium_address: "경기장 1번 주소",
+          stadium_img: "경기장 1번 이미지 URL",
+          stadium_price: "1번 경기장 가격",
+          lat: 37.472513,
+          lng: 126.992405,
+        },
+        {
+          seq: 2,
+          stadium_name: "노량진 축구장",
+          stadium_address: "경기장 2번 주소",
+          stadium_img: "경기장 2번 이미지 URL",
+          stadium_price: "2번 경기장 가격",
+          lat: 37.515313,
+          lng: 126.941091,
+        },
+        {
+          seq: 3,
+          stadium_name: "스카이돔 축구장",
+          stadium_address: "경기장 3번 주소",
+          stadium_img: "경기장 3번 이미지 URL",
+          stadium_price: "3번 경기장 가격",
+          lat: 37.496475,
+          lng: 126.867208,
+        },
+        {
+          seq: 4,
+          stadium_name: "탄천축구장",
+          stadium_address: "경기장 4번 주소",
+          stadium_img: "경기장 4번 이미지 URL",
+          stadium_price: "4번 경기장 가격",
+          lat: 37.49652,
+          lng: 127.100316,
+        },
+        {
+          seq: 5,
+          stadium_name: "서울월드컵 보조경기장",
+          stadium_address: "경기장 5번 주소",
+          stadium_img: "경기장 5번 이미지 URL",
+          stadium_price: "5번 경기장 가격",
+          lat: 37.5715,
+          lng: 126.898204,
+        },
+      ],
+      mapOption: {
+        center: {
+          lat: 37.501477,
+          lng: 127.03966,
+        },
+        level: 3,
+      },
     };
   },
   created() {
@@ -176,6 +237,19 @@ export default {
         if (res.data) {
           this.details = res.data;
           console.log(this.details);
+
+          // 선택한 경기장 정보 찾기
+          const selectedStadium = this.stadiums.find(
+            (stadium) => stadium.stadium_name === this.details.stadium_name
+          );
+
+          // 경기장 정보가 있을 경우 맵의 중심 좌표 설정
+          if (selectedStadium) {
+            this.mapOption.center = {
+              lat: selectedStadium.lat,
+              lng: selectedStadium.lng,
+            };
+          }
         } else {
           this.details = "정보가 이상하네요!";
         }
@@ -184,6 +258,7 @@ export default {
         console.log(err);
       });
   },
+
   methods: {
     regist() {
       const REST_API = "http://localhost:9999";
@@ -309,5 +384,10 @@ export default {
 }
 .textwrap {
   text-indent: 30px;
+}
+.kmap {
+  width: 500px;
+  height: 300px;
+  border-radius: 20px;
 }
 </style>
