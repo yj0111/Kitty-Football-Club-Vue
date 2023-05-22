@@ -116,69 +116,69 @@ export default {
   },
   methods: {
     gameGather(event) {
-      // if (this.gather_date === "" || this.gather_announcement === "") {
-      //   alert("모든 항목을 입력해주세요");
-      //   return;
-      // }
-      // event.preventDefault();
-      // //공고 올리기
-      // const REST_API = "http://localhost:9999";
-      // const API_URL = `${REST_API}/gather/make`;
-      // // 등록하기 버튼 클릭 시 실행되는 함수
-      // // 여기에 등록 로직을 작성하세요.
-      // const jsessionIdCookie = document.cookie
-      //   .split("; ")
-      //   .find((cookie) => cookie.startsWith("JSESSIONID="));
-      // let jsessionId = "";
-      // if (jsessionIdCookie) {
-      //   jsessionId = jsessionIdCookie.split("=")[1];
-      //   console.log(jsessionId);
-      // }
-      // axios({
-      //   headers: {
-      //     Cookie: `JSESSIONID=${jsessionId}`,
-      //   },
-      //   url: API_URL,
-      //   method: "POST",
-      //   withCredentials: true,
-      // })
-      //   .then((res) => {
-      //     if (res.data) {
-      //       router.push({ name: "home" });
-      //     } else {
-      //       alert("팀 공고 만들기에 실패하였습니다.");
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     if (error.response.status === 401) {
-      //       // 401 Unauthorized 에러 처리
-      //       alert("로그인이 필요한 서비스 입니다");
-      //       router.push({ name: "login" });
-      //     } else {
-      //       // 다른 에러 처리
-      //       console.error(error);
-      //     }
-      //   });
+      if (this.gather_date === "" || this.gather_announcement === "") {
+        alert("모든 항목을 입력해주세요");
+        return;
+      }
+      event.preventDefault();
+      //공고 올리기
+      const REST_API = "http://localhost:9999";
+      const API_URL = `${REST_API}/gather/make`;
+      // 등록하기 버튼 클릭 시 실행되는 함수
+      // 여기에 등록 로직을 작성하세요.
+      const jsessionIdCookie = document.cookie
+        .split("; ")
+        .find((cookie) => cookie.startsWith("JSESSIONID="));
+      let jsessionId = "";
+      if (jsessionIdCookie) {
+        jsessionId = jsessionIdCookie.split("=")[1];
+        console.log(jsessionId);
+      }
+      axios({
+        headers: {
+          Cookie: `JSESSIONID=${jsessionId}`,
+        },
+        url: API_URL,
+        method: "POST",
+        withCredentials: true,
+      })
+        .then((res) => {
+          if (res.data) {
+            router.push({ name: "home" });
+          } else {
+            alert("팀 공고 만들기에 실패하였습니다.");
+          }
+        })
+        .catch((error) => {
+          if (error.response.status === 401) {
+            // 401 Unauthorized 에러 처리
+            alert("로그인이 필요한 서비스 입니다");
+            router.push({ name: "login" });
+          } else {
+            // 다른 에러 처리
+            console.error(error);
+          }
+        });
     },
   },
   watch: {
     selectedStadium(value) {
-      // // 경기장 선택이 변경될 때마다 실행되는 함수
-      // if (value) {
-      //   this.selectedStadiumInfo = this.stadiums.find(
-      //     (stadium) => stadium.seq === value
-      //   );
-      //   this.mapOption.center = {
-      //     lat: this.selectedStadiumInfo.lat,
-      //     lng: this.selectedStadiumInfo.lng,
-      //   };
-      // } else {
-      //   this.selectedStadiumInfo = {};
-      //   this.mapOption.center = {
-      //     lat: 37.501477,
-      //     lng: 127.03966,
-      //   };
-      // }
+      // 경기장 선택이 변경될 때마다 실행되는 함수
+      if (value) {
+        this.selectedStadiumInfo = this.stadiums.find(
+          (stadium) => stadium.seq === value
+        );
+        this.mapOption.center = {
+          lat: this.selectedStadiumInfo.lat,
+          lng: this.selectedStadiumInfo.lng,
+        };
+      } else {
+        this.selectedStadiumInfo = {};
+        this.mapOption.center = {
+          lat: 37.501477,
+          lng: 127.03966,
+        };
+      }
     },
   },
 };
