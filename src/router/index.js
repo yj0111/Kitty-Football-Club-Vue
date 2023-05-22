@@ -7,6 +7,7 @@ import createTeam from "../views/createTeam.vue";
 import getTeam from "../views/getTeam.vue";
 import signUp from "../views/signUp.vue";
 import signUpOk from "../views/signUpOk.vue";
+import gameGather from "../views/teamGather.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -52,7 +53,7 @@ const routes = [
   // },
   {
     path: "/myTeam",
-    component: HomeView,
+    component: gameGather,
     children: [
       {
         path: ":id",

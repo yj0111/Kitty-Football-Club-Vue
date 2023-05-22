@@ -1,6 +1,5 @@
 <template>
-  <div v-if="video">
-    <h2>영상 보기!</h2>
+  <div v-if="video" class="video-container">
     <iframe
       width="1000"
       height="600"
@@ -27,4 +26,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+</style>

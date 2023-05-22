@@ -1,39 +1,53 @@
 <template>
-  <div class="container">
-    <form @submit.prevent="submitForm" class="createTeam">
-      <div style="text-align: center">
-        <input type="file" ref="fileInput" @change="previewImage" />
-        <img :src="imagePreview" class="image-preview" />
-      </div>
-      <label for="team_name"></label>
-      <input
-        type="text"
-        id="team_name"
-        v-model="team_name"
-        placeholder="팀 이름을 입력해주세요"
-      />
-      <span v-if="team_name === ''">팀 이름을 입력해주세요</span>
+  <div>
+    <h4 class="team_list_h4">팀 만들기</h4>
+    <div class="container">
+      <form @submit.prevent="submitForm" class="createTeam">
+        <div style="text-align: center">
+          <img :src="imagePreview" class="image-preview" />
+          <label for="file_input" class="file-input-label">
+            로고 파일 선택 나중에 수정하자
+            <input
+              type="file"
+              id="file_input"
+              ref="fileInput"
+              @change="previewImage"
+              style="display: none"
+            />
+          </label>
+        </div>
+        <label for="team_name"></label>
+        <input
+          type="text"
+          id="team_name"
+          v-model="team_name"
+          placeholder="팀 이름을 입력해주세요"
+        />
+        <span v-if="team_name === ''">팀 이름을 입력해주세요</span>
 
-      <label for="team_content"></label>
-      <textarea
-        id="team_content"
-        v-model="team_content"
-        placeholder="팀 소개를 입력해주세요"
-        style="width: 400px; height: 100px"
-      ></textarea>
-      <span v-if="team_content === ''">팀 소개를 입력해주세요</span>
+        <label for="team_content"></label>
+        <textarea
+          id="team_content"
+          v-model="team_content"
+          placeholder="팀 소개를 입력해주세요"
+          style="width: 400px; height: 100px"
+        ></textarea>
+        <span v-if="team_content === ''">팀 소개를 입력해주세요</span>
 
-      <label for="team_announcement"></label>
-      <textarea
-        id="team_announcement"
-        v-model="team_announcement"
-        placeholder="팀 공고를 입력해주세요"
-        style="width: 400px; height: 100px"
-      ></textarea>
-      <span v-if="team_announcement === ''">팀 공고를 입력해주세요</span>
+        <label for="team_announcement"></label>
+        <textarea
+          id="team_announcement"
+          v-model="team_announcement"
+          placeholder="팀 공고를 입력해주세요"
+          style="width: 400px; height: 100px"
+        ></textarea>
+        <span v-if="team_announcement === ''">팀 공고를 입력해주세요</span>
 
-      <button @click="createTeam" class="createTeam-button">팀 생성하기</button>
-    </form>
+        <button @click="createTeam" class="createTeam-button">
+          팀 생성하기
+        </button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -129,6 +143,13 @@ export default {
 </script>
 
 <style scoped>
+.team_list_h4 {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-weight: bolder;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -186,5 +207,24 @@ export default {
   margin-top: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
+}
+
+.file-input-label {
+  padding: 10px 20px;
+  background-color: #cdfe61;
+  width: 200px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.file-input-label:hover {
+  background-color: gray;
+  color: black;
 }
 </style>

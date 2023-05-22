@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h3>검색 결과</h3>
     <div class="youtube-list">
       <youtube-video-item
-        v-for="video in videos"
+        v-for="(video, index) in visibleVideos"
         :key="video.id.videoId"
         :video="video"
+        :index="index"
+        :style="{ margin: '10px 10px' }"
       ></youtube-video-item>
     </div>
   </div>
@@ -20,12 +21,27 @@ export default {
   name: "YoutubeSearchResult",
   computed: {
     ...mapState(["videos"]),
+    visibleVideos() {
+      //9개의 영상
+      return this.videos.slice(0, 9);
+    },
   },
 };
 </script>
 
 <style scoped>
 .youtube-list {
-  text-align: left;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+}
+.youtube-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.youtube-list ::v-deep .youtube-video-item {
+  margin: 10px;
 }
 </style>

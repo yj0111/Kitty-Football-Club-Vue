@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>유튜브 전용페이지</h2>
+    <h4 class="team_list_h4">축구 소식</h4>
     <youtube-search></youtube-search>
     <hr />
     <youtube-video-detail></youtube-video-detail>
@@ -25,7 +25,10 @@ export default {
 </script>
 
 <style scoped>
-h2 {
-  color: red;
+.team_list_h4 {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-weight: bolder;
 }
 </style>

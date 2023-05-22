@@ -1,107 +1,110 @@
 <template>
-  <div class="container">
-    <form @submit.prevent="submitForm" class="signup">
-      <label for="id"></label>
-      <input
-        type="text"
-        id="id"
-        v-model="user_id"
-        placeholder="아이디를 입력해주세요"
-      />
-      <span v-if="user_id === ''">아이디를 입력해주세요</span>
-
-      <label for="password"></label>
-      <input
-        type="password"
-        id="password"
-        v-model="user_password"
-        placeholder="비밀번호를 입력해주세요"
-      />
-      <span v-if="user_password === ''">비밀번호를 입력해주세요</span>
-
-      <label for="passwordConfirm"></label>
-      <input
-        type="password"
-        id="passwordConfirm"
-        v-model="passwordConfirm"
-        placeholder="비밀번호를 한번 더 입력해주세요"
-      />
-      <span v-if="user_password !== passwordConfirm"
-        >비밀번호가 일치하지 않습니다.</span
-      >
-
-      <label for="name"></label>
-      <input
-        type="text"
-        id="name"
-        v-model="user_name"
-        placeholder="이름을 입력해주세요"
-      />
-      <span v-if="user_name === ''">이름을 입력해주세요</span>
-
-      <label for="phone"></label>
-      <input
-        type="text"
-        id="phone"
-        v-model="user_phone"
-        placeholder="휴대폰 번호"
-      />
-      <span v-if="user_phone === ''">휴대폰 번호를 입력해주세요</span>
-      <span v-else-if="!isValidPhone(user_phone)"
-        >숫자(11자리)만 입력해주세요</span
-      >
-
-      <label for="email"></label>
-      <input
-        type="text"
-        id="email"
-        v-model="user_email"
-        placeholder="이메일을 입력해주세요"
-      />
-      <span v-if="user_email === ''">이메일을 입력해주세요</span>
-      <span v-else-if="!isValidEmail(user_email)"
-        >이메일 형식으로 입력해주세요</span
-      >
-
-      <label for="birth"></label>
-      <input
-        type="text"
-        id="birth"
-        v-model="user_birth"
-        placeholder="생일을 입력해주세요"
-      />
-      <span v-if="user_birth === ''">숫자(8자리)만 입력해주세요</span>
-
-      <div>
+  <div>
+    <h4 class="team_list_h4">회원가입</h4>
+    <div class="container">
+      <form @submit.prevent="submitForm" class="signup">
+        <label for="id"></label>
         <input
           type="text"
-          v-model="postcode"
-          placeholder="우편번호"
-          style="width: 310px"
+          id="id"
+          v-model="user_id"
+          placeholder="아이디를 입력해주세요"
         />
-        <span style="padding-left: 25px">
+        <span v-if="user_id === ''">아이디를 입력해주세요</span>
+
+        <label for="password"></label>
+        <input
+          type="password"
+          id="password"
+          v-model="user_password"
+          placeholder="비밀번호를 입력해주세요"
+        />
+        <span v-if="user_password === ''">비밀번호를 입력해주세요</span>
+
+        <label for="passwordConfirm"></label>
+        <input
+          type="password"
+          id="passwordConfirm"
+          v-model="passwordConfirm"
+          placeholder="비밀번호를 한번 더 입력해주세요"
+        />
+        <span v-if="user_password !== passwordConfirm"
+          >비밀번호가 일치하지 않습니다.</span
+        >
+
+        <label for="name"></label>
+        <input
+          type="text"
+          id="name"
+          v-model="user_name"
+          placeholder="이름을 입력해주세요"
+        />
+        <span v-if="user_name === ''">이름을 입력해주세요</span>
+
+        <label for="phone"></label>
+        <input
+          type="text"
+          id="phone"
+          v-model="user_phone"
+          placeholder="휴대폰 번호"
+        />
+        <span v-if="user_phone === ''">휴대폰 번호를 입력해주세요</span>
+        <span v-else-if="!isValidPhone(user_phone)"
+          >숫자(11자리)만 입력해주세요</span
+        >
+
+        <label for="email"></label>
+        <input
+          type="text"
+          id="email"
+          v-model="user_email"
+          placeholder="이메일을 입력해주세요"
+        />
+        <span v-if="user_email === ''">이메일을 입력해주세요</span>
+        <span v-else-if="!isValidEmail(user_email)"
+          >이메일 형식으로 입력해주세요</span
+        >
+
+        <label for="birth"></label>
+        <input
+          type="text"
+          id="birth"
+          v-model="user_birth"
+          placeholder="생일을 입력해주세요"
+        />
+        <span v-if="user_birth === ''">숫자(8자리)만 입력해주세요</span>
+
+        <div>
           <input
-            type="button"
-            @click="execDaumPostcode()"
-            value="찾기"
-            style="width: 65px"
-          /><br />
-        </span>
-      </div>
-      <input
-        type="text"
-        v-model="user_address"
-        id="address"
-        placeholder="주소"
-      /><br />
+            type="text"
+            v-model="postcode"
+            placeholder="우편번호"
+            style="width: 310px"
+          />
+          <span style="padding-left: 25px">
+            <input
+              type="button"
+              @click="execDaumPostcode()"
+              value="찾기"
+              style="width: 65px"
+            /><br />
+          </span>
+        </div>
+        <input
+          type="text"
+          v-model="user_address"
+          id="address"
+          placeholder="주소"
+        /><br />
 
-      <div style="text-align: center">
-        <input type="file" ref="fileInput" @change="previewImage" />
-        <img :src="imagePreview" class="image-preview" />
-      </div>
+        <div style="text-align: center">
+          <input type="file" ref="fileInput" @change="previewImage" />
+          <img :src="imagePreview" class="image-preview" />
+        </div>
 
-      <button @click="signUp" class="signup-button">회원가입</button>
-    </form>
+        <button @click="signUp" class="signup-button">회원가입</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -230,6 +233,12 @@ export default {
 </script>
 
 <style scoped>
+.team_list_h4 {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-weight: bolder;
+}
 .container {
   display: flex;
   justify-content: center;
