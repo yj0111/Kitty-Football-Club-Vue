@@ -2,11 +2,13 @@
   <div class="containerPlay">
     <div class="play1" v-for="(record, i) in records" :key="i">
       <div class="box">
-        <img
-          :src="require(`@/assets/${record.team1_logo}`)"
-          alt=""
-          class="teamLogo"
-        />
+        <div class="imgBox">
+          <img
+            :src="require(`@/assets/${record.team1_logo}`)"
+            alt=""
+            class="teamLogo"
+          />
+        </div>
       </div>
       <div class="teamName">{{ record.team1_name }}</div>
       <div class="teamScore">
@@ -14,11 +16,13 @@
       </div>
       <div class="teamName">{{ record.team2_name }}</div>
       <div class="box">
-        <img
-          :src="require(`@/assets/${record.team2_logo}`)"
-          alt=""
-          class="teamLogo"
-        />
+        <div class="imgBox">
+          <img
+            :src="require(`@/assets/${record.team2_logo}`)"
+            alt=""
+            class="teamLogo"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -46,7 +50,7 @@ export default {
         if (res.data) {
           this.records = res.data;
         } else {
-          alert("실 패 ");
+          this.records = "최근 경기가 없어요~";
         }
       })
       .catch((err) => {
@@ -79,19 +83,25 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  flex: 1;
 }
 .box {
-  width: 80px;
-  height: 80px;
-  border-radius: 70%;
-  overflow: hidden;
+  flex: 1;
 }
 .teamName {
   font-size: 16px;
   color: #8e8e8e;
+  flex: 1;
 }
 .teamScore {
   font-size: 23px;
   color: #cdfe61;
+  flex: 1;
+}
+.imgBox {
+  width: 80px;
+  height: 80px;
+  border-radius: 70%;
+  overflow: hidden;
 }
 </style>

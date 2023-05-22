@@ -30,9 +30,11 @@
     <div class="btnGroup">
       <b-icon icon="bell" class="bell" style=""></b-icon>
       <div class="link">
-        <router-link :to="{ name: 'login' }" class="routerLink loginB">
-          <div v-if="jsessionId">로그아웃</div>
-          <div v-else>로그인</div>
+        <div v-if="jsessionId" class="routerLink loginB" @click="logout()">
+          로그아웃
+        </div>
+        <router-link v-else :to="{ name: 'login' }" class="routerLink loginB">
+          <div>로그인</div>
         </router-link>
       </div>
     </div>
@@ -41,6 +43,7 @@
 
 <script scoped>
 import { mapState } from "vuex";
+
 export default {
   name: "HeaderNav",
   data() {
@@ -67,23 +70,14 @@ export default {
       if (jsessionIdCookie) {
         const jsessionId = jsessionIdCookie.split("=")[1];
         this.jsessionId = jsessionId;
-        console.log(jsessionId);
+      } else {
+        this.jsessionId = "";
       }
     },
+    logout() {
+      this.$store.dispatch("Logout");
+    },
   },
-
-  // mounted() {
-  //   //이거 로그인 동작 수행하면 실행되게 바꿔야 함
-  //   const jsessionIdCookie = document.cookie
-  //     .split("; ")
-  //     .find((cookie) => cookie.startsWith("JSESSIONID="));
-
-  //   if (jsessionIdCookie) {
-  //     const jsessionId = jsessionIdCookie.split("=")[1];
-  //     this.jsessionId = jsessionId;
-  //     console.log(jsessionId);
-  //   }
-  // },
 };
 </script>
 
@@ -135,6 +129,7 @@ export default {
   margin-right: 11px;
   color: #102137;
 }
+.loginB,
 .bell:hover,
 .logo:hover {
   cursor: pointer;

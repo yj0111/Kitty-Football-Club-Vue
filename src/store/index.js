@@ -17,6 +17,11 @@ export default new Vuex.Store({
   mutations: {
     LOGIN_DATA(state, payload) {
       state.loginData = payload;
+      console.log("dat2a" + state.loginData);
+    },
+    LOGOUT_DATA(state) {
+      state.loginData = {};
+      console.log("data" + state.loginData);
     },
     SIGNUP_DATA(state, payload) {
       state.signUpData = payload;
@@ -48,9 +53,33 @@ export default new Vuex.Store({
             commit("LOGIN_DATA", res.data);
             router.push({ name: "home" });
           } else {
-            alert("잘못 입력 하셨습니다.");
+            alert("아이디 또는 비밀번호가 잘못 되었습니다.");
             const input = document.getElementById("id-input");
             input.focus();
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    //로그아웃!
+    Logout({ commit }) {
+      const API_URL = `${REST_API}/logout`;
+      axios({
+        headers: {
+          Cookie: `JSESSIONID=${this.jsessionId}`,
+        },
+        url: API_URL,
+        method: "POST",
+        withCredentials: true,
+      })
+        .then((res) => {
+          console.log(res);
+          if (res.data.message == "success") {
+            commit("LOGOUT_DATA");
+            router.replace({ name: "login" });
+          } else {
+            alert("로그아웃 실패.");
           }
         })
         .catch((err) => {
