@@ -63,8 +63,8 @@ const routes = [
       //   component: HomeView,
       // },
       {
-        path: "gatherList",
-        name: "gatherList",
+        path: "listGather",
+        name: "listGather",
         component: listGather,
       },
       {
