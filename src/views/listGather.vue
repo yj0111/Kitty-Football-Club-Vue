@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="listGatherpage">
     <h4 class="team_list_h4">우리 팀 경기 리스트</h4>
     <gatherList @box-clicked="openModal"></gatherList>
     <team-modal2 v-if="showModal" @close="closeModal">
@@ -44,6 +44,11 @@ export default {
 </script>
 
 <style scoped>
+.listGatherpage {
+  background-color: #f5f5f5;
+  height: 780px;
+}
+
 .team_list_h4 {
   text-align: center;
   padding-top: 30px;

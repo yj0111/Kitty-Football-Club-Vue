@@ -18,7 +18,7 @@
           <div class="stadium_price">대관비 : 100,000 원</div>
         </div>
       </div>
-      <div style="font-size: 14px; font-weight: 600; margin-top: 20px">
+      <div style="font-size: 17px; font-weight: bold; margin-top: 20px">
         구장시설
       </div>
 
@@ -113,7 +113,7 @@
           <div>마트 내 음료판매</div>
         </div>
       </div>
-      <div style="font-size: 14px; font-weight: 600; margin-top: 20px">
+      <div style="font-size: 17px; font-weight: bold; margin-top: 20px">
         구장위치
       </div>
       <div class="mapInfo">
@@ -130,10 +130,10 @@
         >
           이것만은 꼭!
         </div>
-        <div class="ggog">■ 풋살장 예약시간 준수 (이용시간 15분 전 대기)</div>
+        <div class="ggog">■ 축구장 예약시간 준수 (이용시간 15분 전 대기)</div>
         <div class="ggog">■ 시설 사용 후 정리정돈 ( 쓰레기 반드시 처리 )</div>
         <div class="ggog">
-          ■ 풋살장 내 취사, 흡연 및 음주, 지나친 소음행위 금지 (적발 시 즉시
+          ■ 축구장 내 취사, 흡연 및 음주, 지나친 소음행위 금지 (적발 시 즉시
           퇴장 및 향후 이용불가)
         </div>
         <div class="ggog">
@@ -173,45 +173,45 @@ export default {
         {
           seq: 1,
           stadium_name: "방배배수지체육공원",
-          stadium_address: "경기장 1번 주소",
-          stadium_img: "경기장 1번 이미지 URL",
-          stadium_price: "1번 경기장 가격",
+          stadium_address: "서울특별시 서초구 방배3동 남부순환로296길",
+          stadium_img: "bbstadium.png",
+          stadium_price: "100,000원",
           lat: 37.472513,
           lng: 126.992405,
         },
         {
           seq: 2,
           stadium_name: "노량진 축구장",
-          stadium_address: "경기장 2번 주소",
-          stadium_img: "경기장 2번 이미지 URL",
-          stadium_price: "2번 경기장 가격",
+          stadium_address: "서울특별시 동작구 노량진동 노들로 688",
+          stadium_img: "nrjstadium.png",
+          stadium_price: "100,000원",
           lat: 37.515313,
           lng: 126.941091,
         },
         {
           seq: 3,
           stadium_name: "스카이돔 축구장",
-          stadium_address: "경기장 3번 주소",
-          stadium_img: "경기장 3번 이미지 URL",
-          stadium_price: "3번 경기장 가격",
+          stadium_address: "서울특별시 구로구 고척제1동 279-4",
+          stadium_img: "skystadium.png",
+          stadium_price: "100,000원",
           lat: 37.496475,
           lng: 126.867208,
         },
         {
           seq: 4,
           stadium_name: "탄천축구장",
-          stadium_address: "경기장 4번 주소",
-          stadium_img: "경기장 4번 이미지 URL",
-          stadium_price: "4번 경기장 가격",
+          stadium_address: "서울특별시 송파구 삼학사로2길 49",
+          stadium_img: "tcstadium.png",
+          stadium_price: "100,000원",
           lat: 37.49652,
           lng: 127.100316,
         },
         {
           seq: 5,
           stadium_name: "서울월드컵 보조경기장",
-          stadium_address: "경기장 5번 주소",
-          stadium_img: "경기장 5번 이미지 URL",
-          stadium_price: "5번 경기장 가격",
+          stadium_address: "서울특별시 마포구 성산동 499",
+          stadium_img: "wcstadium.png",
+          stadium_price: "100,000원",
           lat: 37.5715,
           lng: 126.898204,
         },
@@ -369,8 +369,10 @@ export default {
 .ggog {
   margin-bottom: 8px;
   font-size: 14px;
+  text-align: left;
 }
 .insertBtn {
+  margin-top: 15px;
   padding: 10px 20px;
   background-color: #102137;
   width: 400px;
