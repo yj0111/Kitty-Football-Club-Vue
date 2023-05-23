@@ -89,6 +89,7 @@ export default {
   justify-content: space-between;
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
 }
 .link {
   font-weight: bold;
@@ -96,7 +97,7 @@ export default {
   text-decoration: none;
 }
 .routerLink {
-  font-size: 14px;
+  font-size: 16px;
   color: #102137;
 }
 .routerLink:hover {

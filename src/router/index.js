@@ -10,13 +10,14 @@ import signUpOk from "../views/signUpOk.vue";
 import myTeam from "../views/myTeam.vue";
 import gameGather from "../views/teamGather.vue";
 import listGather from "../views/listGather.vue";
+import MainView from "../views/MainView.vue";
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
+    component: MainView,
   },
   {
     path: "/createTeam",

@@ -27,7 +27,7 @@ export default {
           title: "팀만들러 가자~",
           content: "오예",
           // You can also provide a URL for the image.
-          image: require("@/assets/시나모롤1.jpg"),
+          image: require("@/assets/istockphoto-1364255407-170667a.jpg"),
           link: "http://localhost:8080/createTeam",
         },
         {
