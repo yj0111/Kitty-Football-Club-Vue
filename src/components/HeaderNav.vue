@@ -83,7 +83,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .header {
   font-family: "NanumBarunGothic";
   height: 96px;

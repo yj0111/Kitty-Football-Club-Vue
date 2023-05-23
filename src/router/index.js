@@ -10,7 +10,12 @@ import signUpOk from "../views/signUpOk.vue";
 import myTeam from "../views/myTeam.vue";
 import gameGather from "../views/teamGather.vue";
 import listGather from "../views/listGather.vue";
+<<<<<<< HEAD
+import LiveChatting from "../components/LiveChatting.vue";
+import teamManagement from "../components/myteam/teamManagement.vue";
+=======
 import MainView from "../views/MainView.vue";
+>>>>>>> 1c9e49beebab40a2228e49bcf4d8f95f7fc9b4e9
 Vue.use(VueRouter);
 
 const routes = [
@@ -74,14 +79,14 @@ const routes = [
         component: gameGather,
       },
       {
-        path: "record",
-        name: "record",
-        component: HomeView,
+        path: "LiveChatting",
+        name: "LiveChatting",
+        component: LiveChatting,
       },
       {
-        path: "management",
-        name: "management",
-        component: HomeView,
+        path: "teamManagement",
+        name: "teamManagement",
+        component: teamManagement,
       },
     ],
   },
