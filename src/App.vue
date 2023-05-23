@@ -2,6 +2,7 @@
   <div class="container">
     <div id="app">
       <header-nav></header-nav>
+
       <RouterView></RouterView>
     </div>
   </div>

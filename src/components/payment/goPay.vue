@@ -21,7 +21,7 @@ export default {
           // 결제 요청 옵션들
           application_id: "6466bf8b3049c8001c9687c7",
           price: 100,
-          order_name: "잠실종합운동장",
+          order_name: "Kitty-Football-Club",
           order_id: "TEST_ORDER_ID",
           pg: "이니시스",
           method: "카드",

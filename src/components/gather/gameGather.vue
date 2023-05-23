@@ -43,7 +43,9 @@
       ></textarea>
       <span v-if="gather_announcement === ''">모집공고를 입력해주세요</span>
 
-      <button @click="gameGather" class="gameGather-button">등록하기</button>
+      <button @click="requestPayment" class="gameGather-button">
+        결제 및 등록하기
+      </button>
     </div>
   </div>
 </template>
@@ -52,7 +54,7 @@
 import axios from "axios";
 import router from "@/router";
 import KakaoMap from "@/components/map/KakaoMap.vue";
-
+import { Bootpay } from "@bootpay/client-js";
 export default {
   name: "gameGather",
   components: {
@@ -121,6 +123,35 @@ export default {
     };
   },
   methods: {
+    async requestPayment() {
+      try {
+        const response = await Bootpay.requestPayment({
+          // 결제 요청 옵션들
+          application_id: "6466bf8b3049c8001c9687c7",
+          price: 100,
+          order_name: "Kitty-Football-Club",
+          order_id: "TEST_ORDER_ID",
+          pg: "이니시스",
+          method: "카드",
+          user: {
+            id: "회원아이디",
+            username: "회원이름",
+            phone: "01000000000",
+            email: "test@test.com",
+          },
+          extra: {
+            open_type: "iframe",
+            card_quota: "0,2,3",
+            escrow: false,
+          },
+        });
+        console.log(response); // 결제 요청 결과를 출력하거나 처리합니다.
+        this.gameGather();
+        alert("결제 완료 및 등록 되었습니다.");
+      } catch (error) {
+        console.error(error); // 오류 처리를 합니다.
+      }
+    },
     gameGather() {
       console.log(this.selectedStadium);
       console.log(this.gather_date);
