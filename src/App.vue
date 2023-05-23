@@ -22,5 +22,6 @@ export default {
 .container {
   width: 100%;
   margin: 0 auto;
+  font-family: "NanumBarunGothicLight";
 }
 </style>
