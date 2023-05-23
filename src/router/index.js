@@ -13,6 +13,7 @@ import listGather from "../views/listGather.vue";
 import LiveChatting from "../components/LiveChatting.vue";
 import teamManagement from "../components/myteam/teamManagement.vue";
 import MainView from "../views/MainView.vue";
+
 Vue.use(VueRouter);
 
 const routes = [

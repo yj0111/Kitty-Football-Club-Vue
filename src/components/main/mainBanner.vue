@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vueper-slides :dragging-distance="50">
+    <vueper-slides fade :touchable="false" fixed-height="700px">
       <vueper-slide
         class="banner"
         v-for="(slide, i) in slides"
@@ -24,32 +24,32 @@ export default {
     return {
       slides: [
         {
-          title: "팀만들러 가자~",
-          content: "오예",
+          title: "",
+          content: "",
           // You can also provide a URL for the image.
-          image: require("@/assets/istockphoto-1364255407-170667a.jpg"),
-          link: "http://localhost:8080/createTeam",
+          image: require("@/assets/banner3.jpg"),
+          //  link: "http://localhost:8080/createTeam",
         },
         {
-          title: "우리팀 보러 가자~",
-          content: "하핫",
+          title: "",
+          content: "",
           // You can also provide a URL for the image.
-          image: require("@/assets/시나모롤2.jpg"),
-          link: "http://localhost:8080//myTeam",
+          image: require("@/assets/banner1.jpg"),
+          //   link: "http://localhost:8080//myTeam",
         },
         {
-          title: "클럽에 가입해 보자~",
-          content: "고고고",
+          title: "",
+          content: "",
           // You can also provide a URL for the image.
-          image: require("@/assets/시나모롤3.jpg"),
-          link: "http://localhost:8080/getTeam",
+          image: require("@/assets/banner7.jpg"),
+          //  link: "http://localhost:8080/getTeam",
         },
         {
-          title: "소식을 보러 가자",
-          content: "소식소식",
+          title: "",
+          content: "",
           // You can also provide a URL for the image.
-          image: require("@/assets/시나모롤4.jpg"),
-          link: "http://localhost:8080/footballNews",
+          image: require("@/assets/banner5.jpg"),
+          //  link: "http://localhost:8080/footballNews",
         },
       ],
     };
@@ -70,13 +70,13 @@ export default {
   text-decoration: none;
 }
 .vueperslides__arrow {
-  color: #102137;
+  color: #ffffff;
 }
 .banner:hover {
   text-decoration: none;
 }
 .banner {
-  background-size: 800px;
+  background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
 }

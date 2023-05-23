@@ -1,9 +1,17 @@
 <template>
-  <div class="containerFuture">
+  <div>
     <mainBanner></mainBanner>
-    <mainRanking></mainRanking>
-    <futurePlay></futurePlay>
-    <recentPlay></recentPlay>
+    <div class="containerMainView">
+      <div class="twoCont">
+        <div class="Ranking">
+          <mainRanking></mainRanking>
+        </div>
+        <div class="recent">
+          <recentPlay></recentPlay>
+        </div>
+      </div>
+      <futurePlay></futurePlay>
+    </div>
   </div>
 </template>
 
@@ -29,4 +37,17 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.containerMainView {
+  width: 100%;
+  margin: 0 auto;
+}
+.twoCont {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+.recent {
+  margin-left: 100px;
+}
+</style>

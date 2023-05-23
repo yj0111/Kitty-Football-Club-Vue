@@ -1,7 +1,8 @@
 <template>
-  <div class="container">
+  <div class="containerApp">
     <div id="app">
       <header-nav></header-nav>
+
       <RouterView></RouterView>
     </div>
   </div>
@@ -19,9 +20,10 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.containerApp {
   width: 100%;
-  margin: 0 auto;
-  font-family: "NanumBarunGothicLight";
+  /* margin: 0 auto; */
+  margin: 0;
+  padding: 0;
 }
 </style>
