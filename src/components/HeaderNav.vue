@@ -85,11 +85,14 @@ export default {
 
 <style>
 .header {
-  margin-top: 16px;
+  font-family: "NanumBarunGothic";
+  height: 96px;
+
   justify-content: space-between;
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  width: 100%;
+  padding: 0 64px;
 }
 .link {
   font-weight: bold;
@@ -106,6 +109,7 @@ export default {
 }
 
 .loginB {
+  font-family: "NanumBarunGothic";
   color: #102137;
   min-width: 69px;
   height: 30px;
@@ -129,7 +133,7 @@ export default {
 .bell {
   width: 25px;
   height: 25px;
-  margin-right: 11px;
+  margin-right: 20px;
   color: #102137;
 }
 .loginB,
