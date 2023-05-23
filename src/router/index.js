@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
+
 import LoginUser from "../views/LoginUser.vue";
 import footballNews from "../views/footballNews.vue";
 import createTeam from "../views/createTeam.vue";
@@ -10,12 +10,9 @@ import signUpOk from "../views/signUpOk.vue";
 import myTeam from "../views/myTeam.vue";
 import gameGather from "../views/teamGather.vue";
 import listGather from "../views/listGather.vue";
-<<<<<<< HEAD
 import LiveChatting from "../components/LiveChatting.vue";
 import teamManagement from "../components/myteam/teamManagement.vue";
-=======
 import MainView from "../views/MainView.vue";
->>>>>>> 1c9e49beebab40a2228e49bcf4d8f95f7fc9b4e9
 Vue.use(VueRouter);
 
 const routes = [

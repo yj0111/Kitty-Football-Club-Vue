@@ -6,16 +6,24 @@
         alt="로고입니당"
         class="teamLogo"
         id="logo"
-        width="100px"
+        style="width: 200px; height: 200px"
       />
-      <h2>{{ details.team_name }}</h2>
-      <h4>랭킹: {{ details.ranking }}</h4>
-      <h4>승점: {{ details.score }}</h4>
-      <h4>승: {{ details.team_win }}</h4>
-      <h4>패: {{ details.team_lose }}</h4>
-      <h4>무: {{ details.team_draw }}</h4>
-      <h4>공고: {{ details.team_announcement }}</h4>
-      <h4>현재 인원: {{ details.total_cnt }}</h4>
+    </div>
+    <div class="detail1">
+      <div class="teamInfo" style="width: 400px; margin-top: 12px">
+        <div class="teamName">{{ details.team_name }}</div>
+        <div class="teamRank">현재 랭킹 : {{ details.ranking }} 위</div>
+        <div class="teamWin">
+          {{ details.team_win }}승 {{ details.team_draw }}무
+          {{ details.team_lose }}패
+        </div>
+        <div class="teamCnt">팀원 :{{ details.total_cnt }}명</div>
+        <div class="teamAnnouncement">
+          {{ details.team_announcement }}
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 20px">
       <button @click="joinTeam" class="joinTeam-button">가입 신청</button>
     </div>
   </div>
@@ -104,61 +112,61 @@ export default {
 </script>
 
 <style scoped>
-.logopic {
-  width: 50px;
-  height: 80px;
-  object-fit: cover;
+.teamLogo {
+  width: 200px;
+  height: 180px;
 }
 
 .teamDetail {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding-left: 30px;
+  background-color: #102137;
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  font-family: "NanumBarunGothic";
 }
 
 .detail {
+  margin-left: 40px;
+}
+.detail1 {
+  width: 465px;
+  border: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   cursor: pointer;
+  color: white;
 }
 
-.box {
-  display: flex;
-  position: relative;
-  width: 240px;
-  height: 120px;
-  margin: 10px;
-  padding: 20px;
+.joinTeam-button {
+  width: 100px;
+  height: 50px;
+  border-style: none;
   border-radius: 10px;
-  overflow: hidden;
-  background-color: #f4f4f4;
-  transition: transform 0.2s;
-  border-color: #dbdbdb;
+  color: #102137;
+  background-color: #cdfe61;
+  vertical-align: middle;
 }
-
-.box:hover {
-  transform: scale(1.05);
+.teamName {
+  font-size: 50px;
+  text-align: left;
 }
-
-.pic {
-  width: 80px;
-  height: 80px;
+.teamRank {
+  text-align: left;
+  color: #8e8e8e;
 }
-
-.detailInfo {
-  flex-grow: 1;
-  display: flex;
+.teamCnt,
+.teamWin {
+  text-align: left;
   font-size: 14px;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 10px;
+  color: #8e8e8e;
 }
 
-.detailName {
-  font-size: 15px;
-  font-weight: bold;
-  color: black;
+.teamAnnouncement {
+  text-align: left;
+  color: #cdfe61;
 }
 </style>

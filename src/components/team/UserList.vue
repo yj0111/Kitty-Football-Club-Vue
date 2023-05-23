@@ -10,21 +10,16 @@
         <div class="pic">
           <img
             :src="require(`@/assets/${user.user_pic}`)"
-            alt="로고입니당"
+            alt="프로필사진"
             class="userpic"
             id="pic"
           />
         </div>
         <div class="userInfo">
-          <div class="userName" style="text-align: center">
-            {{ user.user_name }}
-          </div>
-          <div class="userBirth">
-            {{ formatDate(user.user_birth) }}
-          </div>
-          <div class="content">{{ user.user_phone }}</div>
-          <div class="content">{{ user.user_address }}</div>
-          <div class="content">{{ user.user_email }}</div>
+          <div class="userName">{{ user.user_name }}</div>
+          <div class="userBirth">{{ formatDate(user.user_birth) }}</div>
+          <div class="userAddress">{{ user.user_address }}</div>
+          <div class="userEmail">{{ user.user_email }}</div>
         </div>
       </div>
     </div>
@@ -72,8 +67,8 @@ export default {
 
 <style scoped>
 .userpic {
-  width: 50px;
-  height: 80px;
+  width: 200px;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -82,6 +77,7 @@ export default {
   flex-wrap: wrap;
   justify-content: flex-start;
   padding-left: 30px;
+  font-family: "NanumBarunGothic";
 }
 
 .user {
@@ -93,16 +89,15 @@ export default {
 
 .box {
   display: flex;
-  position: relative;
+  flex-direction: column;
   width: 240px;
-  height: 120px;
+  height: 300px;
   margin: 10px;
   padding: 20px;
   border-radius: 10px;
   overflow: hidden;
-  background-color: #f4f4f4;
+  background-color: lightsteelblue;
   transition: transform 0.2s;
-  border-color: #dbdbdb;
 }
 
 .box:hover {
@@ -110,22 +105,48 @@ export default {
 }
 
 .pic {
-  width: 80px;
-  height: 80px;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 .userInfo {
-  flex-grow: 1;
   display: flex;
-  font-size: 14px;
   flex-direction: column;
-  justify-content: center;
-  padding-left: 10px;
+  text-align: left;
+  margin-top: 14px;
 }
 
 .userName {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
-  color: black;
+  color: #282828;
+  text-align: left;
+  margin-left: 0;
+  width: 100px;
+}
+
+.userBirth {
+  font-size: 13px;
+  color: #757575;
+  width: 100px;
+  text-align: left;
+  margin-left: 0;
+}
+
+.userAddress {
+  font-size: 13px;
+  color: #8e8e8e;
+  width: 100px;
+  text-align: left;
+  margin-left: 0;
+}
+.userEmail {
+  font-size: 13px;
+  color: #8e8e8e;
+  width: 100px;
+  margin-left: 0;
+  text-align: left;
 }
 </style>

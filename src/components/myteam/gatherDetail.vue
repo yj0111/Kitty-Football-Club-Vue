@@ -14,8 +14,8 @@
           <div class="stadium_address">{{ details.stadium_address }}</div>
         </div>
         <div class="context2">
-          <div class="gather_date">{{ details.gather_date }}</div>
-          <div class="stadium_price">대관비 :{{ details.stadium_price }}원</div>
+          <div class="gather_date">경기 날짜 :{{ details.gather_date }}</div>
+          <div class="stadium_price">대관비 : 100,000 원</div>
         </div>
       </div>
       <div style="font-size: 14px; font-weight: 600; margin-top: 20px">
@@ -361,7 +361,7 @@ export default {
   flex: 1;
   font-size: 13px;
   font-weight: bold;
-  color: #343a40;
+  color: black;
 }
 .image {
   width: 50px;
@@ -371,16 +371,24 @@ export default {
   font-size: 14px;
 }
 .insertBtn {
-  margin-top: 20px;
   padding: 10px 20px;
-  background-color: #cdfe61;
+  background-color: #102137;
   width: 400px;
-  color: black;
-  height: 65px;
+  color: #f5f6ff;
+  height: 62px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 15px;
+  font-family: "NanumBarunGothic";
   transition: background-color 0.3s;
+}
+
+.insertBtn:hover {
+  background-color: #ddd;
+  color: black;
+  border-color: #ddd;
+  border: 1px solid #ddd;
 }
 .textwrap {
   text-indent: 30px;
@@ -389,5 +397,9 @@ export default {
   width: 500px;
   height: 300px;
   border-radius: 20px;
+}
+.mapInfo {
+  margin-left: 170px;
+  margin-top: 18px;
 }
 </style>
