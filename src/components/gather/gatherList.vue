@@ -18,8 +18,13 @@
         ></date-picker>
       </div>
     </div>
-    <div class="match-list">
-      <div class="box" v-for="gather in gatherList" :key="gather.gatherNo">
+    <div
+      class="match-list"
+      v-for="(gather, i) in gatherList"
+      :key="i"
+      @click="openModal(gather)"
+    >
+      <div class="box">
         <div class="match-info">
           <div class="team-name">경기장 위치 :{{ gather.stadium_name }}</div>
           <div class="team-name">경기일:{{ gather.gather_date }}</div>
@@ -50,6 +55,10 @@ export default {
   },
   computed: {},
   methods: {
+    openModal(gather) {
+      console.log("박스 클릭했어요 제발");
+      this.$emit("box-clicked", gather.gather_id);
+    },
     changedateM() {
       let d = new Date(this.selectDay);
       d.setDate(d.getDate() - 1);
