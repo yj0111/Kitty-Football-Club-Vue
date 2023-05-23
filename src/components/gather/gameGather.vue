@@ -121,7 +121,6 @@ export default {
     };
   },
   methods: {
-<<<<<<< HEAD
     gameGather() {
       console.log(this.selectedStadium);
       console.log(this.gather_date);
@@ -135,49 +134,29 @@ export default {
 
       // 공고 올리기
       const API_URL = "http://localhost:9999/gather/make";
-=======
-    gameGather(event) {
-      if (this.gather_date === "" || this.gather_announcement === "") {
-        alert("모든 항목을 입력해주세요");
-        return;
-      }
-      event.preventDefault();
-      //공고 올리기
-      const REST_API = "http://localhost:9999";
-      const API_URL = `${REST_API}/gather/make`;
-      // 등록하기 버튼 클릭 시 실행되는 함수
-      // 여기에 등록 로직을 작성하세요.
->>>>>>> c0b467bb6e7ab8209c74f83aaa5deaba10e158e6
+
       const jsessionIdCookie = document.cookie
         .split("; ")
         .find((cookie) => cookie.startsWith("JSESSIONID="));
       let jsessionId = "";
       if (jsessionIdCookie) {
         jsessionId = jsessionIdCookie.split("=")[1];
-<<<<<<< HEAD
       }
       axios({
         headers: {
           //"Content-Type": "application/x-www-form-urlencoded",
-=======
-        console.log(jsessionId);
-      }
-      axios({
-        headers: {
->>>>>>> c0b467bb6e7ab8209c74f83aaa5deaba10e158e6
+
           Cookie: `JSESSIONID=${jsessionId}`,
         },
         url: API_URL,
         method: "POST",
         withCredentials: true,
-<<<<<<< HEAD
+
         data: {
           gather_date: this.gather_date,
           stadium_id: this.selectedStadium,
           gather_announcement: this.gather_announcement,
         },
-=======
->>>>>>> c0b467bb6e7ab8209c74f83aaa5deaba10e158e6
       })
         .then((res) => {
           if (res.data) {
@@ -189,11 +168,9 @@ export default {
         .catch((error) => {
           if (error.response.status === 401) {
             // 401 Unauthorized 에러 처리
-<<<<<<< HEAD
+
             alert("로그인이 필요한 서비스입니다.");
-=======
-            alert("로그인이 필요한 서비스 입니다");
->>>>>>> c0b467bb6e7ab8209c74f83aaa5deaba10e158e6
+
             router.push({ name: "login" });
           } else {
             // 다른 에러 처리

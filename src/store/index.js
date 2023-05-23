@@ -39,59 +39,6 @@ export default new Vuex.Store({
   actions: {
     //카카오로그인!!!!!!!!
 
-    kakaoLogin({ commit }) {
-      //  window.Kakao.init("YOUR_APP_KEY"); // Kakao SDK 초기화
-
-      window.Kakao.Auth.login({
-        success: function (authObj) {
-          const API_URL = `${REST_API}/kfc/oauth`;
-          axios({
-            url: API_URL,
-            method: "GET",
-            withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${authObj.access_token}`,
-              // "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
-            },
-          })
-            .then((res) => {
-              if (res.data === "signUp") {
-                console.log(res.data);
-                location.href = "/signUp";
-              } else {
-                commit("LOGIN_DATA", res.data);
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        },
-        fail: function (errorObj) {
-          console.log(errorObj);
-        },
-      });
-    },
-
-    // kakaoLogin({ commit }) {
-    //   const API_URL = `${REST_API}/kfc/oauth`;
-    //   axios({
-    //     url: API_URL,
-    //     method: "GET",
-    //     withCredentials: true,
-    //   })
-    //     .then((res) => {
-    //       if (res.data == "signUp") {
-    //         console.log(res.data);
-
-    //         router.push({ name: "signUp" });
-    //       } else {
-    //         commit("LOGIN_DATA", res.data);
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // },
     //로그인
     Login({ commit }, User) {
       console.log(User);

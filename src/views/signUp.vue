@@ -122,9 +122,12 @@ export default {
       user_birth: "",
       user_address: "",
       imagePreview: null,
+      kakaoId: "",
     };
   },
-
+  created() {
+    this.kakaoId = this.$route.query.id;
+  },
   methods: {
     previewImage(event) {
       const file = event.target.files[0];
@@ -211,6 +214,7 @@ export default {
       formData.append("user_email", this.user_email);
       formData.append("user_birth", this.user_birth);
       formData.append("user_address", this.user_address);
+      formData.append("user_kakao_id", this.kakaoId);
 
       // 파일 추가
       formData.append("file", file);
