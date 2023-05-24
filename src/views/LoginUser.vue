@@ -40,6 +40,7 @@
             src="@/assets/kakao_login.png"
             width="64px"
             height="64px"
+            class="lbtn"
             alt="카카오 로그인 버튼"
         /></a>
 
@@ -52,6 +53,7 @@
             src="@/assets/naver_login.png"
             width="64px"
             height="64px"
+            class="lbtn"
             alt="네이버 로그인 버튼"
         /></a>
       </div>
@@ -174,6 +176,9 @@ export default {
 </script>
 
 <style scoped>
+.lbtn {
+  object-fit: cover;
+}
 .login-wrapper {
   display: flex;
   align-items: flex-start;

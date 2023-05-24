@@ -3,6 +3,7 @@
     <button
       class="custom-button"
       @click="setKeywordAndSearch('쿠팡플레이 [2023 K리그1] 14R  vs ')"
+      :class="{ active: keyword === '쿠팡플레이 [2023 K리그1] 14R  vs ' }"
     >
       K리그
     </button>
@@ -48,6 +49,9 @@ export default {
 </script>
 
 <style scoped>
+.active {
+  background-color: #0c1c2e;
+}
 .button-group {
   text-align: center;
 }

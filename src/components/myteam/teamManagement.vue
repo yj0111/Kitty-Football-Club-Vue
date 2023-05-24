@@ -124,4 +124,8 @@ export default {
   flex: 1;
   text-align: center;
 }
+
+.teamLogo {
+  object-fit: cover;
+}
 </style>

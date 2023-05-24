@@ -28,10 +28,10 @@
       <div class="teamName">{{ play.team2_name }}</div>
     </div>
     <div class="stadium">
-      <spqn class="icons"></spqn>
+      <span class="icons"></span>
       <span>{{ play.stadium_name }}</span>
     </div>
-    <div>시분초어케할겨</div>
+    <div class="countdown">{{ countdown }}</div>
   </div>
 </template>
 
@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       play: {},
+      countdown: "", // 카운트 다운 표시를 위한 변수
     };
   },
   created() {
@@ -56,6 +57,9 @@ export default {
         if (res.data) {
           console.log(res.data);
           this.play = res.data;
+
+          // 카운트 다운 시작
+          this.startCountdown();
         } else {
           alert("메인의 다음 경기 일정 데이터가 없다");
         }
@@ -64,9 +68,53 @@ export default {
         console.log(err);
       });
   },
+  methods: {
+    startCountdown() {
+      const gameDate = this.play.game_date; // 날짜를 그대로 가져옵니다.
+      const [day, month, year, hour, minute] = gameDate.split(/[.: ]/); // 날짜를 구성 요소로 분할합니다.
+
+      // 구성 요소를 기반으로 Date 객체를 생성합니다.
+      const dateObj = new Date(
+        parseInt(`20${year}`, 10),
+        parseInt(month, 10) - 1, // 수정된 부분: 1을 빼줍니다.
+        parseInt(day, 10),
+        parseInt(hour, 10),
+        parseInt(minute, 10)
+      );
+
+      // 1초마다 카운트 다운을 업데이트합니다.
+      const interval = setInterval(() => {
+        const now = new Date().getTime(); // 현재 시간을 밀리초로 가져옵니다.
+        const distance = dateObj - now; // 경기 일시와 현재 시간의 차이를 계산합니다.
+
+        // 차이를 일, 시, 분, 초로 변환하여 countdown 변수에 저장합니다.
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        this.countdown = `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
+
+        // 경기 시작 시간이 지나면 카운트 다운을 종료합니다.
+        if (distance < 0) {
+          clearInterval(interval);
+          this.countdown = "경기 시작";
+        }
+      }, 1000); // 1초마다 갱신
+    },
+  },
 };
 </script>
+
 <style scoped>
+.countdown {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  margin-top: 20px;
+}
 .OneContainer {
   font-family: "NanumBarunGothic";
   margin: 0 auto;

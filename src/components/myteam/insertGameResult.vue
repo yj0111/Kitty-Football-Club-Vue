@@ -214,11 +214,13 @@ export default {
 .teamLogo {
   width: 80px;
   height: 80px;
+  object-fit: cover;
 }
 .teamLogo2 {
   width: 80px;
   height: 80px;
   margin-left: 35px;
+  object-fit: cover;
 }
 
 .Input {

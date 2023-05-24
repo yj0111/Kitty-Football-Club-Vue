@@ -79,6 +79,7 @@ export default {
 .teamLogo {
   width: 200px;
   height: 180px;
+  object-fit: cover;
 }
 
 .teamDetail {

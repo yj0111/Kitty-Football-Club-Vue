@@ -377,6 +377,7 @@ export default {
   margin-top: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
+  object-fit: cover;
 }
 .signup input[type="file"] {
   font-size: 13px;

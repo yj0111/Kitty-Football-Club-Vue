@@ -365,6 +365,7 @@ export default {
 }
 .image {
   width: 50px;
+  object-fit: cover;
 }
 .ggog {
   margin-bottom: 8px;

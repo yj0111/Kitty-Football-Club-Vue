@@ -230,5 +230,6 @@ export default {
 
 .teamLogo {
   width: 70px;
+  object-fit: cover;
 }
 </style>
