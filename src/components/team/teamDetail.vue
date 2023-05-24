@@ -127,14 +127,13 @@ export default {
 .teamLogo {
   width: 200px;
   height: 180px;
-  object-fit: cover;
 }
 
 .teamDetail {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  background-color: #102137;
+  background-color: black;
   width: 100%;
   height: 200px;
   border-radius: 10px;
@@ -159,8 +158,13 @@ export default {
   height: 50px;
   border-style: none;
   border-radius: 10px;
-  color: #102137;
-  background-color: #cdfe61;
+  color: #b5b5b5;
+  background-color: #003e2a;
+  vertical-align: middle;
+}
+.joinTeam-button:hover {
+  color: #003e2a;
+  background-color: #b5b5b5;
   vertical-align: middle;
 }
 .teamName {
@@ -169,17 +173,17 @@ export default {
 }
 .teamRank {
   text-align: left;
-  color: #8e8e8e;
+  color: #b5b5b5;
 }
 .teamCnt,
 .teamWin {
   text-align: left;
   font-size: 14px;
-  color: #8e8e8e;
+  color: #b5b5b5;
 }
 
 .teamAnnouncement {
   text-align: left;
-  color: #cdfe61;
+  color: #01b378;
 }
 </style>

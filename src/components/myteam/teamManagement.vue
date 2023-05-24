@@ -18,7 +18,10 @@
             <div class="userAddress">{{ user.user_address }}</div>
             <div class="userEmail">{{ user.user_email }}</div>
           </div>
-          <button @click="Out(user.id)">추방하자</button>
+
+          <button @click="Out(user.id)" class="btn" style="align-items: center">
+            추방하자
+          </button>
         </div>
       </div>
     </div>
@@ -117,6 +120,28 @@ export default {
   font-weight: 700;
   color: white;
 }
+.btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #034f36;
+  width: 200px;
+  color: #f5f6ff;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: "NanumBarunGothic";
+  transition: background-color 0.3s;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.btn:hover {
+  background-color: #ddd;
+  color: black;
+}
 .concon {
   background: url(@/assets/mainback.png) 50% 50% / cover no-repeat;
   width: 100%;
@@ -171,32 +196,31 @@ export default {
   flex-direction: column;
   text-align: left;
   margin-top: 14px;
+  width: 100%;
 }
 
 .userName {
   font-size: 18px;
-
   font-weight: bold;
   color: white;
   text-align: left;
   margin-left: 0;
-  width: 100px;
+  width: 100%;
 }
 
 .userBirth {
   font-size: 14px;
 
   color: hsla(0, 0%, 100%, 0.5);
-  width: 100px;
+  width: 100%;
   text-align: left;
   margin-left: 0;
 }
 
 .userAddress {
   font-size: 13px;
-
   color: hsla(0, 0%, 100%, 0.5);
-  width: 100px;
+  width: 170px;
   text-align: left;
   margin-left: 0;
 }
@@ -204,7 +228,7 @@ export default {
   font-size: 13px;
 
   color: hsla(0, 0%, 100%, 0.5);
-  width: 100px;
+  width: 100%;
   margin-left: 0;
   text-align: left;
 }

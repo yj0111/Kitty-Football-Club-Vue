@@ -96,7 +96,8 @@ export default {
   padding: 20px;
   border-radius: 10px;
   overflow: hidden;
-  background-color: lightsteelblue;
+  background-color: white;
+  opacity: 0.9;
   transition: transform 0.2s;
 }
 
@@ -138,7 +139,7 @@ export default {
 .userAddress {
   font-size: 13px;
   color: #8e8e8e;
-  width: 100px;
+  width: 170px;
   text-align: left;
   margin-left: 0;
 }

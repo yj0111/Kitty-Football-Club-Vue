@@ -31,7 +31,27 @@
       <span class="icons"></span>
       <span>{{ play.stadium_name }}</span>
     </div>
-    <div class="countdown">{{ countdown }}</div>
+    <div class="count_down_day">
+      <div class="count_box">
+        <span class="count_label">일</span>
+        <span class="count_num">{{ days }}</span>
+      </div>
+      <span class="count_span">:</span>
+      <div class="count_box">
+        <span class="count_label">시</span>
+        <span class="count_num">{{ hours }}</span>
+      </div>
+      <span class="count_span">:</span>
+      <div class="count_box">
+        <span class="count_label">분</span>
+        <span class="count_num">{{ minutes }}</span>
+      </div>
+      <span class="count_span">:</span>
+      <div class="count_box">
+        <span class="count_label">초</span>
+        <span class="count_num">{{ seconds }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -44,6 +64,10 @@ export default {
     return {
       play: {},
       countdown: "", // 카운트 다운 표시를 위한 변수
+      days: "",
+      hours: "",
+      minutes: "",
+      seconds: "",
     };
   },
   created() {
@@ -75,9 +99,9 @@ export default {
 
       // 구성 요소를 기반으로 Date 객체를 생성합니다.
       const dateObj = new Date(
-        parseInt(`20${year}`, 10),
-        parseInt(month, 10) - 1, // 수정된 부분: 1을 빼줍니다.
-        parseInt(day, 10),
+        parseInt(`20${year}`, 10) - 3,
+        parseInt(month, 10) - 1,
+        parseInt(day, 10) + 2,
         parseInt(hour, 10),
         parseInt(minute, 10)
       );
@@ -85,9 +109,9 @@ export default {
       // 1초마다 카운트 다운을 업데이트합니다.
       const interval = setInterval(() => {
         const now = new Date().getTime(); // 현재 시간을 밀리초로 가져옵니다.
-        const distance = dateObj - now; // 경기 일시와 현재 시간의 차이를 계산합니다.
+        const oneDayAgo = now - 24 * 60 * 60 * 1000;
+        const distance = dateObj - oneDayAgo; // 경기 일시와 현재 시간의 차이를 계산합니다.
 
-        // 차이를 일, 시, 분, 초로 변환하여 countdown 변수에 저장합니다.
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor(
           (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -95,7 +119,10 @@ export default {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
         this.countdown = `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
-
+        this.days = `${days}`;
+        this.hours = `${hours}`;
+        this.minutes = `${minutes}`;
+        this.seconds = `${seconds}`;
         // 경기 시작 시간이 지나면 카운트 다운을 종료합니다.
         if (distance < 0) {
           clearInterval(interval);
@@ -108,6 +135,50 @@ export default {
 </script>
 
 <style scoped>
+.count_box {
+  width: 70px;
+  height: 67px;
+  border-style: 3px solid white;
+  position: relative;
+  width: 70px;
+  height: 67px;
+  font-size: 45px;
+  font-weight: 700;
+  background-color: #181818;
+  color: white;
+  border-radius: 6px;
+  text-align: center;
+}
+.count_down_day {
+  justify-content: center;
+  display: flex;
+  padding-top: 68px;
+}
+.count_span {
+  font-size: 40px;
+  line-height: 60px;
+  margin: 6px;
+  opacity: 2;
+  color: white;
+}
+.count_num {
+  position: relative;
+  width: 70px;
+  height: 67px;
+  padding-top: 0.2em;
+  font-size: 45px;
+  font-weight: 700;
+  background-color: #181818;
+  color: white;
+  border-radius: 6px;
+}
+.count_label {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  font-size: 12px;
+  font-weight: 400;
+}
 .countdown {
   text-align: center;
   font-size: 18px;
@@ -136,7 +207,7 @@ export default {
   margin-top: 32px;
   margin-bottom: 15px;
   text-align: center;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   color: hsla(0, 0%, 100%, 0.5);
 }
@@ -144,7 +215,7 @@ export default {
   margin-top: 40px;
   margin-bottom: 40px;
   text-align: center;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   color: #fff;
   opacity: 0.5;

@@ -36,7 +36,7 @@ export default {
 }
 
 .modal-content {
-  background-color: #102137;
+  background-color: black;
   padding: 20px;
   border-radius: 5px;
   text-align: center;
