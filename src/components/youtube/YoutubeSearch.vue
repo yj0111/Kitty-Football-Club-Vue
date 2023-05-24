@@ -3,7 +3,9 @@
     <button
       class="custom-button"
       @click="setKeywordAndSearch('쿠팡플레이 [2023 K리그1] 14R  vs ')"
-      :class="{ active: keyword === '쿠팡플레이 [2023 K리그1] 14R  vs ' }"
+      :class="{
+        active: keyword.trim() === '쿠팡플레이 [2023 K리그1] 14R  vs ',
+      }"
     >
       K리그
     </button>
@@ -33,8 +35,11 @@ export default {
   name: "YoutubeSearch",
   data() {
     return {
-      keyword: "",
+      keyword: "쿠팡플레이 [2023 K리그1] 14R  vs ",
     };
+  },
+  created() {
+    this.search();
   },
   methods: {
     setKeywordAndSearch(value) {
@@ -50,13 +55,14 @@ export default {
 
 <style scoped>
 .active {
-  background-color: #0c1c2e;
+  background-color: #ffffff;
 }
 .button-group {
+  padding-bottom: 20px;
   text-align: center;
 }
 .custom-button {
-  background-color: #102137;
+  background-color: #034f36;
   color: white;
   border: none;
   border-radius: 4px;

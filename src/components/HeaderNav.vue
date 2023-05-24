@@ -19,10 +19,11 @@
         >팀구하기</router-link
       >
     </div>
-    <div class="link">
+    <div class="link" style="position: relative">
       <router-link :to="{ name: 'myTeamMain' }" class="routerLink"
         >우리팀</router-link
       >
+      <SideNav v-if="showSideNav" class="sideBar"></SideNav>
     </div>
     <div class="link">
       <router-link :to="{ name: 'footballNews' }" class="routerLink"
@@ -45,11 +46,15 @@
 
 <script scoped>
 import { mapState } from "vuex";
-
+import SideNav from "./SideNav.vue";
 export default {
   name: "HeaderNav",
+  comments: {
+    SideNav,
+  },
   data() {
     return {
+      showSideNav: false,
       jsessionId: "",
     };
   },
@@ -62,13 +67,19 @@ export default {
       handler: "handleLoginSuccess",
       immediate: true,
     },
+    $route(to) {
+      this.handleRouteChange(to);
+    },
   },
   methods: {
+    handleRouteChange(to) {
+      // 경로가 '/myteam/'로 시작하는 경우에만 showSideNav를 true로 설정
+      this.showSideNav = to.path.startsWith("/myTeam/");
+    },
     handleLoginSuccess() {
       const jsessionIdCookie = document.cookie
         .split("; ")
         .find((cookie) => cookie.startsWith("JSESSIONID="));
-
       if (jsessionIdCookie) {
         const jsessionId = jsessionIdCookie.split("=")[1];
         this.jsessionId = jsessionId;
@@ -80,6 +91,7 @@ export default {
       this.$store.dispatch("Logout");
     },
   },
+  components: { SideNav },
 };
 </script>
 
@@ -140,5 +152,13 @@ export default {
 .bell:hover,
 .logo:hover {
   cursor: pointer;
+}
+.sideBar {
+  right: -176px;
+  width: 387px;
+  height: 27px;
+  position: absolute;
+  top: 33px;
+  z-index: 1;
 }
 </style>

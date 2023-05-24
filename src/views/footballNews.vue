@@ -2,9 +2,9 @@
   <div>
     <br />
     <youtube-search></youtube-search>
-    <hr />
+
     <youtube-video-detail></youtube-video-detail>
-    <hr />
+
     <youtube-search-result></youtube-search-result>
   </div>
 </template>

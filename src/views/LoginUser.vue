@@ -181,7 +181,7 @@ export default {
 }
 .login-wrapper {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   height: 100vh;
 }
@@ -222,7 +222,7 @@ input {
 
 .login-button {
   padding: 10px 20px;
-  background-color: #102137;
+  background-color: #034f36;
   width: 400px;
   color: #f5f6ff;
   height: 62px;
