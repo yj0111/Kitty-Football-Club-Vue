@@ -4,6 +4,8 @@
       <header-nav></header-nav>
 
       <RouterView></RouterView>
+      <insertGameResult></insertGameResult>
+      <FooterNavVue></FooterNavVue>
     </div>
   </div>
 </template>
@@ -11,10 +13,14 @@
 <script>
 import { RouterView } from "vue-router";
 import HeaderNav from "./components/HeaderNav.vue";
+import insertGameResult from "./components/myteam/insertGameResult.vue";
+import FooterNavVue from "./components/FooterNav.vue";
 export default {
   components: {
     HeaderNav,
     RouterView,
+    insertGameResult,
+    FooterNavVue,
   },
 };
 </script>

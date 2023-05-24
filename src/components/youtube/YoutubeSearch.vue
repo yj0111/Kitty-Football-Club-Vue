@@ -6,17 +6,23 @@
     >
       K리그
     </button>
-    <button class="custom-button" @click="setKeywordAndSearch('르세라핌')">
-      르세라핌
+    <button
+      class="custom-button"
+      @click="setKeywordAndSearch('spotv [22/23 PL 37R] ')"
+    >
+      프리미어리그
     </button>
-    <button class="custom-button" @click="setKeywordAndSearch('아이브')">
-      아이브
+    <button
+      class="custom-button"
+      @click="setKeywordAndSearch('spotv [22/23 라리가 35R] ')"
+    >
+      라리가
     </button>
-    <button class="custom-button" @click="setKeywordAndSearch('엔믹스')">
-      엔믹스
-    </button>
-    <button class="custom-button" @click="setKeywordAndSearch('손흥민')">
-      손흥민
+    <button
+      class="custom-button"
+      @click="setKeywordAndSearch('[22/23 세리에A 36R]')"
+    >
+      세리에A
     </button>
   </div>
 </template>
@@ -50,7 +56,7 @@ export default {
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 8px 16px;
+  padding: 8px 18px;
   margin-right: 8px;
   font-size: 14px;
   cursor: pointer;

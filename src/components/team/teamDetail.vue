@@ -10,7 +10,10 @@
       />
     </div>
     <div class="detail1">
-      <div class="teamInfo" style="width: 400px; margin-top: 12px">
+      <div
+        class="teamInfo"
+        style="width: 400px; margin-top: 12px; text-indent: 40px"
+      >
         <div class="teamName">{{ details.team_name }}</div>
         <div class="teamRank">현재 랭킹 : {{ details.ranking }} 위</div>
         <div class="teamWin">
@@ -32,7 +35,7 @@
 <script>
 import axios from "axios";
 import router from "@/router";
-
+import swal from "sweetalert2";
 export default {
   name: "teamDetail",
   props: ["teamId"], // teamId 값을 props로 받음
@@ -89,16 +92,25 @@ export default {
         })
           .then((res) => {
             if (res.data) {
-              alert("팀 가입 신청이 완료되었습니다.");
-              router.push({ name: "home" });
+              swal.fire({
+                icon: "success",
+                title: "팀 가입 완료!",
+              });
+              router.push({ name: "myTeam" });
             } else {
-              alert("팀 가입에 실패하였습니다.");
+              swal.fire({
+                icon: "error",
+                title: "팀 가입 실패!",
+              });
             }
           })
           .catch((error) => {
             if (error.response.status === 401) {
               // 401 Unauthorized 에러 처리
-              alert("로그인이 필요한 서비스입니다.");
+              swal.fire({
+                icon: "info",
+                title: "로그인이 필요한 서비스 입니다",
+              });
               router.push({ name: "login" });
             } else {
               // 다른 에러 처리

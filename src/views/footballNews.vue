@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="team_list_h4">축구 소식</h4>
+    <br />
     <youtube-search></youtube-search>
     <hr />
     <youtube-video-detail></youtube-video-detail>

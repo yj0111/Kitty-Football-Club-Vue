@@ -1,28 +1,16 @@
 <template>
   <div class="containerInsert">
-    <div class="insertTitle">
-      <div class="title">경기 날짜</div>
-      <div class="title"></div>
-      <div class="title">팀</div>
-      <div class="title">점수</div>
-      <div class="title">점수</div>
-      <div class="title">팀</div>
-      <div class="title"></div>
-      <div class="title"></div>
-    </div>
     <div class="insertContent" v-for="(record, i) in records" :key="i">
-      <div class="date content">{{ record.game_date }}</div>
-      <div class="logo content">
-        <div class="imgBox">
-          <img
-            :src="require(`@/assets/${record.team1_logo}`)"
-            alt=""
-            class="teamLogo"
-          />
-        </div>
+      <div class="dateContent">{{ formatDate(record.game_date) }}</div>
+      <div class="nameContent">{{ record.team1_name }}</div>
+      <div class="logoContent">
+        <img
+          :src="require(`@/assets/${record.team1_logo}`)"
+          alt=""
+          class="teamLogo"
+        />
       </div>
-      <div class="name content">{{ record.team1_name }}</div>
-      <div class="goal content">
+      <div class="goalContent">
         <input
           type="text"
           class="Input"
@@ -30,7 +18,8 @@
           v-model="record.team1_score"
         />
       </div>
-      <div class="goal content">
+      <div class="VS">VS</div>
+      <div class="goalContent">
         <input
           type="text"
           class="Input"
@@ -38,18 +27,16 @@
           v-model="record.team2_score"
         />
       </div>
-      <div class="name content">{{ record.team2_name }}</div>
-      <div class="logo content">
-        <div class="imgBox">
-          <img
-            :src="require(`@/assets/${record.team2_logo}`)"
-            alt=""
-            class="teamLogo"
-          />
-        </div>
+      <div class="logoContent2">
+        <img
+          :src="require(`@/assets/${record.team2_logo}`)"
+          alt=""
+          class="teamLogo2"
+        />
       </div>
-      <div class="btn content">
-        <button @click="insert(record)">등록하기</button>
+      <div class="nameContent">{{ record.team2_name }}</div>
+      <div>
+        <button @click="insert(record)" class="gobutton">등록하기</button>
       </div>
     </div>
   </div>
@@ -57,6 +44,8 @@
 
 <script>
 import axios from "axios";
+import swal from "sweetalert2";
+
 export default {
   name: "insertGameResult",
   data() {
@@ -89,7 +78,10 @@ export default {
           console.log(res.data);
           this.records = res.data;
         } else {
-          alert("전적을 못 가져와");
+          swal.fire({
+            icon: "error",
+            title: "전적 조회 실패!!!",
+          });
         }
       })
       .catch((error) => {
@@ -98,6 +90,20 @@ export default {
   },
 
   methods: {
+    formatDate(date) {
+      if (!date) return "";
+
+      const options = {
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      };
+      const formattedDate = new Date(date).toLocaleString("en-US", options);
+      const [datePart, timePart] = formattedDate.split(", ");
+
+      return `${datePart}\n${timePart}`;
+    },
     insert(record) {
       let Game = {
         team1_score: record.team1_score,
@@ -116,9 +122,15 @@ export default {
       })
         .then((res) => {
           if (res.data) {
-            alert("등록 완료");
+            swal.fire({
+              icon: "success",
+              title: "등록 완료!!!",
+            });
           } else {
-            alert("회원가입에 실패하였습니다.");
+            swal.fire({
+              icon: "error",
+              title: "등록 실패!!!",
+            });
           }
         })
         .catch((err) => {
@@ -130,46 +142,91 @@ export default {
 </script>
 
 <style scoped>
+.logoContent {
+  margin-bottom: 2px;
+}
+.logoContent2 {
+  margin-bottom: 2px;
+  flex: 1;
+}
+.gobutton {
+  border: 1px solid white;
+  background-color: #102137;
+  color: white;
+  width: 150px !important;
+  height: 40px;
+  border-radius: 10px;
+  vertical-align: middle;
+  text-align: center;
+  flex: 0.6;
+  margin-top: 26px;
+}
 .containerInsert {
   display: flex;
   flex-direction: column;
+  font-family: "NanumBarunGothic";
 }
-.insertTitle {
-  display: flex;
+
+.logoContent {
+  flex: 1;
+}
+.nameContent {
+  flex: 1;
+  margin-top: 26px;
+  text-align: center;
+}
+
+.goalContent {
+  flex: 1;
+  text-align: center;
+  margin-top: 10px;
+}
+.VS {
+  flex: 0.5;
+  text-align: center;
+  margin-top: 26px;
+  font-size: 25px;
+  color: gray;
+  font-weight: bold;
+}
+.dateContent {
   font-size: 20px;
-  align-items: center;
+  flex: 2;
+  margin-top: 26px;
 }
+
 .insertContent {
-  display: flex;
-  align-items: center;
-  font-size: 15px;
-}
-.imgBox {
-  width: 35px;
-  height: 35px;
-  border-radius: 70%;
+  flex-direction: row;
+  display: flex; /* 추가: 내부 요소를 좌우로 정렬하기 위해 flex 컨테이너로 설정 */
+  position: relative;
+  border-radius: 3px;
   overflow: hidden;
+  background-color: #fff;
+  transition: transform 0.2s; /* 추가: 호버 효과를 위한 transition 설정 */
+  border: 1px solid #e5e5e5;
+  padding: 15px 40px;
+  margin-left: 130px;
+  margin-right: 130px;
+  margin-bottom: 20px;
+  height: 110px;
 }
+
 .teamLogo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.content {
-  flex: 1;
-  text-align: center;
-  vertical-align: middle;
-}
-.title {
-  text-align: center;
-  vertical-align: middle;
-  flex: 1;
-}
-.Input {
   width: 80px;
+  height: 80px;
 }
-.logo {
-  display: flex;
-  justify-content: center;
+.teamLogo2 {
+  width: 80px;
+  height: 80px;
+  margin-left: 35px;
+}
+
+.Input {
+  width: 64px;
+  height: 64px;
+  border: 1px #ddd solid;
+  border-radius: 20px;
+  font-size: 20px;
+  text-align: center;
 }
 </style>

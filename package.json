@@ -14,6 +14,7 @@
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
     "sockjs-client": "^1.6.1",
+    "sweetalert2": "^11.7.5",
     "vue": "^2.7.14",
     "vue-js-modal": "^2.0.1",
     "vue-kakao-sdk": "^0.2.5",

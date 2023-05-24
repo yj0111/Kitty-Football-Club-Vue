@@ -147,6 +147,7 @@
 </template>
 
 <script>
+import swal from "sweetalert2";
 export default {
   name: "SignupForm",
   data() {
@@ -230,12 +231,18 @@ export default {
         this.user_birth === "" ||
         this.user_address === ""
       ) {
-        alert("모든 항목을 입력해주세요");
+        swal.fire({
+          icon: "info",
+          title: "모든 항목을 입력해주세요",
+        });
         return;
       }
 
       if (this.user_password !== this.passwordConfirm) {
-        alert("비밀번호가 일치하지 않습니다.");
+        swal.fire({
+          icon: "error",
+          title: "비밀번호가 일치하지 않습니다",
+        });
         return;
       }
 
@@ -268,6 +275,10 @@ export default {
         user_address: this.user_address,
       };
       console.log(User);
+      swal.fire({
+        icon: "success",
+        title: "회원 가입 완료!",
+      });
       this.$store.dispatch("signUp", formData);
     },
   },
