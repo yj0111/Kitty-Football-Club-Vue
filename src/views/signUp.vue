@@ -1,34 +1,41 @@
 <template>
-  <div>
-    <h4 class="team_list_h4">회원가입</h4>
-    <div class="container">
+  <div class="signup-wrapper">
+    <div class="signup-form">
+      <h3 class="signn" style="margin-bottom: 20px">회원가입</h3>
       <form @submit.prevent="submitForm" class="signup">
         <label for="id"></label>
         <input
           type="text"
           id="id"
           v-model="user_id"
-          placeholder="아이디를 입력해주세요"
+          placeholder="아이디"
+          style="font-size: 13px"
         />
-        <span v-if="user_id === ''">아이디를 입력해주세요</span>
+        <span v-if="user_id === ''" class="error-message"
+          >아이디를 입력해주세요</span
+        >
 
         <label for="password"></label>
         <input
           type="password"
           id="password"
           v-model="user_password"
-          placeholder="비밀번호를 입력해주세요"
+          placeholder="비밀번호"
+          style="font-size: 13px"
         />
-        <span v-if="user_password === ''">비밀번호를 입력해주세요</span>
+        <span v-if="user_password === ''" class="error-message"
+          >비밀번호를 입력해주세요</span
+        >
 
         <label for="passwordConfirm"></label>
         <input
           type="password"
           id="passwordConfirm"
           v-model="passwordConfirm"
-          placeholder="비밀번호를 한번 더 입력해주세요"
+          placeholder="비밀번호 확인"
+          style="font-size: 13px"
         />
-        <span v-if="user_password !== passwordConfirm"
+        <span v-if="user_password !== passwordConfirm" class="error-message"
           >비밀번호가 일치하지 않습니다.</span
         >
 
@@ -37,9 +44,12 @@
           type="text"
           id="name"
           v-model="user_name"
-          placeholder="이름을 입력해주세요"
+          placeholder="이름"
+          style="font-size: 13px"
         />
-        <span v-if="user_name === ''">이름을 입력해주세요</span>
+        <span v-if="user_name === ''" class="error-message"
+          >이름을 입력해주세요</span
+        >
 
         <label for="phone"></label>
         <input
@@ -47,9 +57,12 @@
           id="phone"
           v-model="user_phone"
           placeholder="휴대폰 번호"
+          style="font-size: 13px"
         />
-        <span v-if="user_phone === ''">휴대폰 번호를 입력해주세요</span>
-        <span v-else-if="!isValidPhone(user_phone)"
+        <span v-if="user_phone === ''" class="error-message"
+          >휴대폰 번호를 입력해주세요</span
+        >
+        <span v-else-if="!isValidPhone(user_phone)" class="error-message"
           >숫자(11자리)만 입력해주세요</span
         >
 
@@ -58,10 +71,14 @@
           type="text"
           id="email"
           v-model="user_email"
-          placeholder="이메일을 입력해주세요"
+          placeholder="이메일
+          "
+          style="font-size: 13px"
         />
-        <span v-if="user_email === ''">이메일을 입력해주세요</span>
-        <span v-else-if="!isValidEmail(user_email)"
+        <span v-if="user_email === ''" class="error-message"
+          >이메일을 입력해주세요</span
+        >
+        <span v-else-if="!isValidEmail(user_email)" class="error-message"
           >이메일 형식으로 입력해주세요</span
         >
 
@@ -70,23 +87,26 @@
           type="text"
           id="birth"
           v-model="user_birth"
-          placeholder="생일을 입력해주세요"
+          placeholder="생일(8자리)"
+          style="font-size: 13px"
         />
-        <span v-if="user_birth === ''">숫자(8자리)만 입력해주세요</span>
+        <span v-if="user_birth === ''" class="error-message"
+          >숫자(8자리)만 입력해주세요</span
+        >
 
         <div>
           <input
             type="text"
             v-model="postcode"
             placeholder="우편번호"
-            style="width: 310px"
+            style="width: 310px; font-size: 13px"
           />
           <span style="padding-left: 25px">
             <input
               type="button"
               @click="execDaumPostcode()"
               value="찾기"
-              style="width: 65px"
+              style="width: 65px; font-size: 13px"
             /><br />
           </span>
         </div>
@@ -95,14 +115,32 @@
           v-model="user_address"
           id="address"
           placeholder="주소"
-        /><br />
-
+          style="font-size: 13px"
+        />
         <div style="text-align: center">
-          <input type="file" ref="fileInput" @change="previewImage" />
+          <span
+            class="profilePicture"
+            style="
+              text-align: left;
+              margin-bottom: 5px;
+              margin-left: -105px;
+              font-size: 13px;
+              color: gray;
+            "
+            >프로필 사진을 등록해주세요.</span
+          >
+          <input
+            type="file"
+            id="profilePicture"
+            ref="fileInput"
+            @change="previewImage"
+          />
           <img :src="imagePreview" class="image-preview" />
         </div>
 
-        <button @click="signUp" class="signup-button">회원가입</button>
+        <button @click="signUp" class="signup-button" style="margin-top: 15px">
+          회원가입
+        </button>
       </form>
     </div>
   </div>
@@ -237,13 +275,33 @@ export default {
 </script>
 
 <style scoped>
-.team_list_h4 {
-  text-align: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  font-weight: bolder;
+.signup-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100vh;
 }
-.container {
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 16px;
+  margin-top: 20px; /* 적절한 값으로 조정 */
+  padding-bottom: 50px;
+}
+
+.signup-form input,
+.signn,
+.signup .error-message,
+.profilePicture {
+  font-family: "NanumBarunGothic";
+}
+
+.signup .error-message {
+  font-size: 11px;
+}
+
+.signup-form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -275,19 +333,23 @@ export default {
 
 .signup-button {
   padding: 10px 20px;
-  background-color: #cdfe61;
-  width: 100%;
-  color: black;
-  height: 50px;
+  background-color: #102137;
+  width: 400px;
+  color: #f5f6ff;
+  height: 62px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 15px;
+  font-family: "NanumBarunGothic";
   transition: background-color 0.3s;
 }
 
 .signup-button:hover {
-  background-color: gray;
+  background-color: #ddd;
   color: black;
+  border-color: #ddd;
+  border: 1px solid #ddd;
 }
 
 .signup span {
@@ -304,5 +366,12 @@ export default {
   margin-top: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
+}
+.signup input[type="file"] {
+  font-size: 13px;
+}
+
+.signup .no-file-selected {
+  font-size: 13px;
 }
 </style>

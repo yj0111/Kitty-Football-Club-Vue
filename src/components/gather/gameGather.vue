@@ -1,17 +1,21 @@
 <template>
-  <div class="container">
+  <div class="gameGather-wrapper">
     <div class="gameGather">
-      <h4 class="team_list_h4">경기 공고 등록</h4>
-      <label for="gather_date">경기 일시</label>
+      <h3 class="signn" style="margin-bottom: 20px">경기 모집</h3>
+      <label for="gather_date"></label>
       <input
         type="datetime-local"
         id="gather_date"
         v-model="gather_date"
         required
       />
+      <span v-if="gather_date === ''" class="error-message"
+        >경기일자를 선택해주세요</span
+      >
 
-      <label for="stadium">경기장 선택</label>
+      <label for="stadium"></label>
       <select id="stadium" v-model="selectedStadium" required>
+        <option disabled value="">경기장을 선택해주세요</option>
         <option
           v-for="stadium in stadiums"
           :key="stadium.seq"
@@ -21,29 +25,27 @@
         </option>
       </select>
 
-      <div v-if="selectedStadium">
-        <p>이미지: {{ selectedStadiumInfo.stadium_img }}</p>
-        <p>가격: {{ selectedStadiumInfo.stadium_price }}</p>
-        <p>위치</p>
-        <div class="mapInfo">
-          <KakaoMap class="kmap" :options="mapOption"></KakaoMap>
-          <p style="height: 30px">
-            {{ selectedStadiumInfo.stadium_address }}
-          </p>
-        </div>
+      <div v-if="selectedStadium" class="selectedStadium">
+        <p>대관비 : {{ selectedStadiumInfo.stadium_price }}</p>
+        <p>구장 위치 : {{ selectedStadiumInfo.stadium_address }}</p>
+        <KakaoMap class="kmap" :options="mapOption"></KakaoMap>
       </div>
 
-      <label for="gather_announcement">공고를 입력하세요:</label>
+      <label for="gather_announcement"></label>
       <textarea
         id="gather_announcement"
         v-model="gather_announcement"
-        placeholder="모집공고를 입력하세요."
+        placeholder="모집 공고"
         style="width: 400px; height: 100px"
         required
       ></textarea>
       <span v-if="gather_announcement === ''">모집공고를 입력해주세요</span>
 
-      <button @click="requestPayment" class="gameGather-button">
+      <button
+        @click="requestPayment"
+        class="gameGather-button"
+        style="margin-top: 15px"
+      >
         결제 및 등록하기
       </button>
     </div>
@@ -69,45 +71,45 @@ export default {
         {
           seq: 1,
           stadium_name: "방배배수지체육공원",
-          stadium_address: "경기장 1번 주소",
-          stadium_img: "경기장 1번 이미지 URL",
-          stadium_price: "1번 경기장 가격",
+          stadium_address: "서울특별시 서초구 방배3동 남부순환로296길",
+          stadium_img: "bbstadium.png",
+          stadium_price: "100,000원",
           lat: 37.472513,
           lng: 126.992405,
         },
         {
           seq: 2,
           stadium_name: "노량진 축구장",
-          stadium_address: "경기장 2번 주소",
-          stadium_img: "경기장 2번 이미지 URL",
-          stadium_price: "2번 경기장 가격",
+          stadium_address: "서울특별시 동작구 노량진동 노들로 688",
+          stadium_img: "nrjstadium.png",
+          stadium_price: "100,000원",
           lat: 37.515313,
           lng: 126.941091,
         },
         {
           seq: 3,
           stadium_name: "스카이돔 축구장",
-          stadium_address: "경기장 3번 주소",
-          stadium_img: "경기장 3번 이미지 URL",
-          stadium_price: "3번 경기장 가격",
+          stadium_address: "서울특별시 구로구 고척제1동 279-4",
+          stadium_img: "skystadium.png",
+          stadium_price: "100,000원",
           lat: 37.496475,
           lng: 126.867208,
         },
         {
           seq: 4,
           stadium_name: "탄천축구장",
-          stadium_address: "경기장 4번 주소",
-          stadium_img: "경기장 4번 이미지 URL",
-          stadium_price: "4번 경기장 가격",
+          stadium_address: "서울특별시 송파구 삼학사로2길 49",
+          stadium_img: "tcstadium.png",
+          stadium_price: "100,000원",
           lat: 37.49652,
           lng: 127.100316,
         },
         {
           seq: 5,
           stadium_name: "서울월드컵 보조경기장",
-          stadium_address: "경기장 5번 주소",
-          stadium_img: "경기장 5번 이미지 URL",
-          stadium_price: "5번 경기장 가격",
+          stadium_address: "서울특별시 마포구 성산동 499",
+          stadium_img: "wcstadium.png",
+          stadium_price: "100,000원",
           lat: 37.5715,
           lng: 126.898204,
         },
@@ -234,16 +236,12 @@ export default {
 </script>
 
 <style scoped>
-.team_list_h4 {
-  text-align: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  font-weight: bolder;
-}
-.container {
+.gameGather-wrapper {
   display: flex;
+  align-items: flex-start;
   justify-content: center;
-  align-items: center;
+  height: 100vh;
+  font-family: "NanumBarunGothic";
 }
 
 .gameGather {
@@ -251,12 +249,18 @@ export default {
   flex-direction: column;
   align-items: center;
   width: 400px;
+  margin-top: 50px; /* 적절한 값으로 조정 */
 }
 
+.selectedStadium {
+  width: 400px;
+}
 .gameGather label {
   margin-bottom: 5px;
 }
-
+.error-message {
+  font-size: 11px;
+}
 .gameGather input {
   padding: 10px 20px;
   width: 400px;
@@ -275,21 +279,35 @@ export default {
   border-radius: 6px;
 }
 
+#gather_announcement {
+  width: 400px;
+  height: 130px;
+  resize: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 2px;
+  font-size: 13px;
+  font-family: "NanumBarunGothic";
+}
 .gameGather-button {
   padding: 10px 20px;
-  background-color: #cdfe61;
-  width: 100%;
-  color: black;
-  height: 50px;
+  background-color: #102137;
+  width: 400px;
+  color: #f5f6ff;
+  height: 62px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 15px;
+  font-family: "NanumBarunGothic";
   transition: background-color 0.3s;
 }
 
 .gameGather-button:hover {
-  background-color: gray;
+  background-color: #ddd;
   color: black;
+  border-color: #ddd;
+  border: 1px solid #ddd;
 }
 
 .gameGather span {
@@ -308,7 +326,7 @@ export default {
   border-radius: 6px;
 }
 .kmap {
-  width: 500px;
+  width: 400px;
   height: 300px;
   border-radius: 20px;
 }
@@ -316,5 +334,9 @@ export default {
 .mapInfo {
   border-radius: 20px;
   background-color: lightgray;
+}
+.stadiumImg {
+  width: 100px;
+  height: 100px;
 }
 </style>

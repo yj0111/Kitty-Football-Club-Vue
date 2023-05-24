@@ -1,14 +1,18 @@
 <template>
-  <div>
+  <div class="getTeam">
     <h4 class="team_list_h4">전체 팀 리스트</h4>
-    <div>
-      <img src="@/assets/team.png" class="team_pic" />
-    </div>
+
     <div class="search-container">
-      <input type="text" placeholder="검색어" class="search-input" />
+      <input
+        type="text"
+        placeholder="팀 이름"
+        class="search-input"
+        v-model="searchText"
+      />
+
       <button class="search-button">검색</button>
     </div>
-    <team-list @box-clicked="openModal"></team-list>
+    <team-list ref="teamList" @box-clicked="openModal"></team-list>
     <team-modal v-if="showModal" @close="closeModal">
       <teamDetail :teamId="selectedTeamId"></teamDetail>
       <UserList :teamId="selectedTeamId"></UserList>
@@ -36,22 +40,32 @@ export default {
   data() {
     return {
       showModal: false,
-      selectedTeamId: null, // 선택한 팀의 team_id 값을 저장할 변수
+      selectedTeamId: null,
+      searchText: "",
     };
   },
   methods: {
     openModal(teamId) {
-      this.selectedTeamId = teamId; // 선택한 팀의 team_id 값을 저장
+      this.selectedTeamId = teamId;
       this.showModal = true;
     },
     closeModal() {
       this.showModal = false;
     },
   },
+  watch: {
+    searchText(newText) {
+      this.$refs.teamList.filterTeams(newText);
+      console.log(newText);
+    },
+  },
 };
 </script>
 
 <style scoped>
+.getTeam {
+  font-family: "NanumBarunGothic";
+}
 .team_list_h4 {
   text-align: center;
   padding-top: 30px;
@@ -62,10 +76,10 @@ export default {
 .search-container {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* 수정: 입력 공간을 오른쪽 정렬 */
+  justify-content: flex-end;
   margin-bottom: 40px;
   padding-top: 50px;
-  padding-right: 50px;
+  padding-right: 248px;
 }
 
 .search-input {

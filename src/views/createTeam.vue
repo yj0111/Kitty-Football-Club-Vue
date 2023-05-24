@@ -1,49 +1,68 @@
 <template>
-  <div>
-    <h4 class="team_list_h4">팀 만들기</h4>
-    <div class="container">
+  <div class="createTeam-wrapper">
+    <div class="createTeam-form">
+      <h3 class="signn" style="margin-bottom: 20px">팀 만들기</h3>
       <form @submit.prevent="submitForm" class="createTeam">
-        <div style="text-align: center">
-          <img :src="imagePreview" class="image-preview" />
-          <label for="file_input" class="file-input-label">
-            로고 파일 선택 나중에 수정하자
-            <input
-              type="file"
-              id="file_input"
-              ref="fileInput"
-              @change="previewImage"
-              style="display: none"
-            />
-          </label>
+        <div style="text-align: center; padding-bottom: -30px">
+          <span
+            v-if="!imagePreview"
+            class="profilePicture"
+            style="
+              text-align: left;
+              margin-left: -105px;
+              font-size: 13px;
+              color: gray;
+            "
+            >팀 로고를 등록해주세요.</span
+          >
+          <img v-if="imagePreview" :src="imagePreview" class="image-preview" />
+          <input
+            type="file"
+            id="file_input"
+            ref="fileInput"
+            @change="previewImage"
+            style="font-size: 13px; margin-top: 15px"
+          />
         </div>
         <label for="team_name"></label>
         <input
           type="text"
           id="team_name"
           v-model="team_name"
-          placeholder="팀 이름을 입력해주세요"
+          placeholder="팀 이름을 입력해주세요 !"
+          style="font-size: 13px"
         />
-        <span v-if="team_name === ''">팀 이름을 입력해주세요</span>
+        <span v-if="team_name === ''" class="error-message"
+          >팀 이름을 입력해주세요</span
+        >
 
         <label for="team_content"></label>
         <textarea
           id="team_content"
           v-model="team_content"
-          placeholder="팀 소개를 입력해주세요"
-          style="width: 400px; height: 100px"
+          placeholder="우리는 어떤 팀인지 소개해주세요 !"
+          style="width: 400px; height: 130px; resize: none"
         ></textarea>
-        <span v-if="team_content === ''">팀 소개를 입력해주세요</span>
+        <span v-if="team_content === ''" class="error-message"
+          >팀 소개말을 작성해주세요</span
+        >
 
         <label for="team_announcement"></label>
         <textarea
           id="team_announcement"
           v-model="team_announcement"
-          placeholder="팀 공고를 입력해주세요"
-          style="width: 400px; height: 100px"
+          placeholder="이런 팀원을 원해요 !"
+          style="width: 400px; height: 130px; margin-top: 5px"
         ></textarea>
-        <span v-if="team_announcement === ''">팀 공고를 입력해주세요</span>
+        <span v-if="team_announcement === ''" class="error-message"
+          >팀 공고를 입력해주세요</span
+        >
 
-        <button @click="createTeam" class="createTeam-button">
+        <button
+          @click="createTeam"
+          class="createTeam-button"
+          style="margin-top: 15px"
+        >
           팀 생성하기
         </button>
       </form>
@@ -143,17 +162,37 @@ export default {
 </script>
 
 <style scoped>
-.team_list_h4 {
-  text-align: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  font-weight: bolder;
+.createTeam-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100vh;
+}
+.createTeam-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 16px;
+  margin-top: 20px; /* 적절한 값으로 조정 */
+  padding-bottom: 50px;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.createTeam-form input,
+.signn,
+.createTeam .error-message,
+.profilePicture {
+  font-family: "NanumBarunGothic";
+}
+
+.createTeam-form textarea {
+  width: 400px;
+  height: 130px;
+  resize: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 2px;
+  font-size: 13px;
+  font-family: "NanumBarunGothic";
 }
 
 .createTeam {
@@ -171,26 +210,30 @@ export default {
   padding: 10px 20px;
   width: 400px;
   height: 50px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   border: 1px solid #ddd;
   border-radius: 6px;
 }
 
 .createTeam-button {
   padding: 10px 20px;
-  background-color: #cdfe61;
-  width: 100%;
-  color: black;
-  height: 50px;
+  background-color: #102137;
+  width: 400px;
+  color: #f5f6ff;
+  height: 62px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 15px;
+  font-family: "NanumBarunGothic";
   transition: background-color 0.3s;
 }
 
 .createTeam-button:hover {
-  background-color: gray;
+  background-color: #ddd;
   color: black;
+  border-color: #ddd;
+  border: 1px solid #ddd;
 }
 
 .createTeam span {
@@ -207,24 +250,5 @@ export default {
   margin-top: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
-}
-
-.file-input-label {
-  padding: 10px 20px;
-  background-color: #cdfe61;
-  width: 200px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.file-input-label:hover {
-  background-color: gray;
-  color: black;
 }
 </style>

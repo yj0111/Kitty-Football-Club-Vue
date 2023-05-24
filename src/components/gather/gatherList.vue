@@ -1,8 +1,7 @@
 <template>
   <div class="gatherList">
-    <h2>모집일정</h2>
     <div class="row">
-      <div class="col-md-12">
+      <div style="margin-left: 666px; margin-bottom: 30px">
         <span class="h3" @click="changedateM">
           <b-icon icon="chevron-double-left"></b-icon>
         </span>
@@ -26,10 +25,37 @@
     >
       <div class="box">
         <div class="match-info">
-          <div class="team-name">경기장 위치 :{{ gather.stadium_name }}</div>
-          <div class="team-name">경기일:{{ gather.gather_date }}</div>
-          <div class="team-name">현재 인원 :{{ gather.player_cnt }}</div>
-          <div class="vsmatchtime">{{ gather.gather_announcement }}</div>
+          <div class="game-date">
+            {{ formatDate(gather.gather_date) }}
+          </div>
+          <div class="stadium_name">{{ gather.stadium_name }}</div>
+          <div class="cnt">인원 : ( {{ gather.player_cnt }} / 11 )</div>
+          <div class="gather_announcement">
+            {{ gather.gather_announcement }}
+          </div>
+        </div>
+        <div class="logoPic" style="margin-top: 20px">
+          <img
+            :src="require(`@/assets/${gather.team_logo}`)"
+            alt=""
+            class="teamLogo"
+          />
+          <span
+            style="
+              font-size: 30px;
+              color: gray;
+              font-weight: bold;
+              padding-left: 20px;
+              padding-right: 20px;
+            "
+            >vs</span
+          >
+          <img :src="require(`@/assets/what.png`)" alt="" class="teamLogo" />
+        </div>
+        <div class="gobutton" style="width: 150px">
+          <p style="margin-top: 9px; font-size: 13px; cursor: pointer">
+            경기 참여
+          </p>
         </div>
       </div>
     </div>
@@ -44,6 +70,7 @@ import axios from "axios";
 export default {
   name: "gatherList",
   components: { DatePicker },
+
   data() {
     return {
       selectDay: "",
@@ -55,6 +82,20 @@ export default {
   },
   computed: {},
   methods: {
+    formatDate(date) {
+      if (!date) return ""; // date가 없을 경우 빈 문자열 반환
+
+      const options = {
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      };
+      const formattedDate = new Date(date).toLocaleString("en-US", options);
+      const [datePart, timePart] = formattedDate.split(", ");
+
+      return `${datePart}\n${timePart}`;
+    },
     openModal(gather) {
       console.log("박스 클릭했어요 제발");
       this.$emit("box-clicked", gather.gather_id);
@@ -118,7 +159,7 @@ export default {
   },
   created() {
     let today = new Date();
-    this.selectDay = this.setTime(today);
+    this.setTime(today); // 초기값으로 오늘 날짜 설정
     this.fetchGatherList();
   },
   watch: {
@@ -132,17 +173,62 @@ export default {
 </script>
 
 <style scoped>
+.gather_announcement {
+  margin-top: 3px;
+}
+.game-date {
+  font-size: 25px;
+}
+.stadium_name {
+  font-size: 17px;
+  color: gray;
+  margin-top: 3px;
+}
+.cnt {
+  font-size: 16px;
+  color: gray;
+  margin-top: 3px;
+}
+.gatherList {
+  font-family: "NanumBarunGothic";
+}
 .box {
+  flex-direction: row;
   display: flex; /* 추가: 내부 요소를 좌우로 정렬하기 위해 flex 컨테이너로 설정 */
   position: relative;
-  width: 240px; /* 한 줄에 3개의 box를 표시하도록 조정 */
-  height: 120px; /* 높이도 원하는 크기로 조정 가능 */
-  margin: 10px;
-  padding: 20px;
-  border-radius: 10px;
+  border-radius: 3px;
   overflow: hidden;
-  background-color: #f4f4f4;
+  background-color: #fff;
   transition: transform 0.2s; /* 추가: 호버 효과를 위한 transition 설정 */
-  border-color: #dbdbdb;
+  border: 1px solid #e5e5e5;
+  padding: 40px 44px 40px 40px;
+  margin-left: 130px;
+  margin-right: 130px;
+  margin-bottom: 20px;
+}
+
+.gobutton {
+  border: 1px solid white;
+  background-color: #102137;
+  color: white;
+  width: 150px !important;
+  height: 40px;
+  border-radius: 10px;
+  vertical-align: middle;
+  text-align: center;
+  flex: 0.6;
+  margin-top: 37px;
+}
+
+.match-info {
+  flex: 2;
+}
+
+.logoPic {
+  flex: 2;
+}
+
+.teamLogo {
+  width: 70px;
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>우리팀</h2>
     <RouterView></RouterView>
   </div>
 </template>
