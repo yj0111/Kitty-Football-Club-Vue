@@ -11,6 +11,7 @@
 <script>
 import { RouterView } from "vue-router";
 import HeaderNav from "./components/HeaderNav.vue";
+
 export default {
   components: {
     HeaderNav,

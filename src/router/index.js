@@ -13,6 +13,7 @@ import listGather from "../views/listGather.vue";
 import LiveChatting from "../components/LiveChatting.vue";
 import teamManagement from "../components/myteam/teamManagement.vue";
 import MainView from "../views/MainView.vue";
+import myTeamMain from "../views/myTeamMain.vue";
 
 Vue.use(VueRouter);
 
@@ -59,13 +60,14 @@ const routes = [
   // },
   {
     path: "/myTeam",
+    name: "myTeam",
     component: myTeam,
     children: [
-      // {
-      //   path: ":id",
-      //   name: "main",
-      //   component: HomeView,
-      // },
+      {
+        path: "",
+        name: "myTeamMain",
+        component: myTeamMain,
+      },
       {
         path: "listGather",
         name: "listGather",

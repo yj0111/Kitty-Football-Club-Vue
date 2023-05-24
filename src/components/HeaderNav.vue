@@ -20,7 +20,7 @@
       >
     </div>
     <div class="link">
-      <router-link :to="{ name: 'myTeam' }" class="routerLink"
+      <router-link :to="{ name: 'myTeamMain' }" class="routerLink"
         >우리팀</router-link
       >
     </div>
