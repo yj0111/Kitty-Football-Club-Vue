@@ -159,7 +159,7 @@ export default {
   font-size: 13px;
 
   color: hsla(0, 0%, 100%, 0.5);
-  width: 100px;
+  width: 180px;
   text-align: left;
   margin-left: 0;
 }

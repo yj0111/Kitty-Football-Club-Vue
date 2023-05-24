@@ -139,7 +139,7 @@ export default {
 .userAddress {
   font-size: 13px;
   color: #8e8e8e;
-  width: 170px;
+  width: 190px;
   text-align: left;
   margin-left: 0;
 }

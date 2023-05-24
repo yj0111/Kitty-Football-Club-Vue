@@ -50,7 +50,7 @@ export default {
           this.originalTeams = res.data; // 원본 팀 목록 저장
           this.teams = res.data;
         } else {
-          alert("실패");
+          //alert("실패");
         }
       })
       .catch((err) => {

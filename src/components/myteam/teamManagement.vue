@@ -20,7 +20,7 @@
           </div>
 
           <button @click="Out(user.id)" class="btn" style="align-items: center">
-            추방하자
+            팀원 강퇴
           </button>
         </div>
       </div>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import swal from "sweetalert2";
 import axios from "axios";
 export default {
   name: "UserList",
@@ -63,7 +64,7 @@ export default {
           console.log(res.data);
           this.users = res.data;
         } else {
-          alert("안돼");
+          //alert("안돼");
         }
       })
       .catch((error) => {
@@ -95,9 +96,15 @@ export default {
       })
         .then((res) => {
           if (res.data) {
-            alert("추방 완료");
+            swal.fire({
+              icon: "success",
+              title: "팀원 강퇴 완료!",
+            });
           } else {
-            alert("운영자만 가능해요");
+            swal.fire({
+              icon: "info",
+              title: "운영자만 관리가 가능합니다.",
+            });
           }
         })
         .catch((err) => {
@@ -140,7 +147,6 @@ export default {
 }
 .btn:hover {
   background-color: #ddd;
-  color: black;
 }
 .concon {
   background: url(@/assets/mainback.png) 50% 50% / cover no-repeat;

@@ -11,6 +11,7 @@
       </div>
       <main-mamber-vue></main-mamber-vue>
     </div>
+    <insertGameResult></insertGameResult>
   </div>
 </template>
 
@@ -18,8 +19,9 @@
 import mainMamberVue from "@/components/myteam/mainMamber.vue";
 import mainTeamInfo from "@/components/myteam/mainTeamInfo.vue";
 import mainRecordVue from "@/components/myteam/mainRecord.vue";
+import insertGameResult from "@/components/myteam/insertGameResult.vue";
 export default {
-  components: { mainMamberVue, mainTeamInfo, mainRecordVue },
+  components: { mainMamberVue, mainTeamInfo, mainRecordVue, insertGameResult },
   name: "MainView",
   data() {
     return {

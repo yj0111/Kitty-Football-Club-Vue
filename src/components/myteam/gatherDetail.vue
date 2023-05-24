@@ -160,6 +160,7 @@
 <script>
 import axios from "axios";
 import KakaoMap from "@/components/map/KakaoMap.vue";
+import swal from "sweetalert2";
 export default {
   name: "gatherDetail",
   components: {
@@ -283,10 +284,16 @@ export default {
           .then((res) => {
             console.log(res.data);
             if (res.data == 1) {
+              swal.fire({
+                icon: "success",
+                title: "참여 신청 완료!",
+              });
               console.log(res.data);
-              alert("등록 완료");
             } else {
-              alert("인원이 꽉 찼어요");
+              swal.fire({
+                icon: "info",
+                title: "인원이 꽉 찼어요",
+              });
             }
           })
           .catch((err) => {

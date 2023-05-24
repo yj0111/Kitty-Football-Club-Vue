@@ -232,7 +232,7 @@ export default {
 }
 
 .teamLogo {
-  width: 70px;
+  width: 90px;
   object-fit: cover;
 }
 </style>

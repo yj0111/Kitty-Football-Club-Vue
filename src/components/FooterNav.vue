@@ -5,9 +5,9 @@
       <div class="footer-info2">
         대표이사: 박현철, 오유정 / 사업자등록번호: 123-45-67890
         <br />
-        전화번호: (063)273-1763 / 팩스: (063)273-1762
+        전화번호: (02)1994-1201 / 팩스: (02)1999-0111
         <br />
-        주소: 서울특별시 강남구 역삼동 테헤란로 212 , 204호
+        주소: 서울특별시 강남구 역삼동 테헤란로 212 멀티캠퍼스
       </div>
       <div class="footer-copyright">
         Copyright ⓒ KITTY FOOTBALL CLUB All Rights Reserved.

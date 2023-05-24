@@ -64,6 +64,7 @@
 <script>
 import router from "@/router";
 import axios from "axios";
+import swal from "sweetalert2";
 export default {
   name: "LoginUser",
   data() {
@@ -116,10 +117,12 @@ export default {
         .then((res) => {
           console.log(res.data);
           if (res.data.key == "signUp") {
-            alert("회원이 아닙니다 가입해 주세요!");
+            swal.fire({
+              icon: "error",
+              title: "회원이 아닙니다 가입해 주세요!",
+            });
             router.push({ name: "signUp", query: { id: res.data.id } });
           } else {
-            alert("일단 성공");
             this.$store.commit("LOGIN_DATA", res.data);
             router.push({ name: "home" });
           }
@@ -150,10 +153,13 @@ export default {
         .then((res) => {
           console.log(res.data);
           if (res.data == "signUp") {
-            alert("회원이 아닙니다 가입해 주세요!");
+            swal.fire({
+              icon: "error",
+              title: "회원이 아닙니다 가입해 주세요!",
+            });
             router.push({ name: "signUp" });
           } else {
-            alert("일단 성공스");
+            //alert("일단 성공스");
             this.$store.commit("LOGIN_DATA", res.data);
             router.push({ name: "home" });
           }

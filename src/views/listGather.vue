@@ -46,7 +46,7 @@ export default {
 <style scoped>
 .listGatherpage {
   background-color: #f5f5f5;
-  height: 780px;
+  height: 860px;
 }
 
 .team_list_h4 {

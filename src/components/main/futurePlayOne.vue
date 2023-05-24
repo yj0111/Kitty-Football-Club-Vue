@@ -85,7 +85,7 @@ export default {
           // 카운트 다운 시작
           this.startCountdown();
         } else {
-          alert("메인의 다음 경기 일정 데이터가 없다");
+          //alert("메인의 다음 경기 일정 데이터가 없다");
         }
       })
       .catch((err) => {
@@ -99,9 +99,9 @@ export default {
 
       // 구성 요소를 기반으로 Date 객체를 생성합니다.
       const dateObj = new Date(
-        parseInt(`20${year}`, 10) - 3,
+        parseInt(`20${year}`, 10) - 2,
         parseInt(month, 10) - 1,
-        parseInt(day, 10) + 2,
+        parseInt(day, 10) + 1,
         parseInt(hour, 10),
         parseInt(minute, 10)
       );

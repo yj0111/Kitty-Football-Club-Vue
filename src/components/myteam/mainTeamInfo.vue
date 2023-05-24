@@ -19,8 +19,7 @@
           </div>
           <div class="teamCnt">팀원 :{{ details.total_cnt }}명</div>
           <div class="teamAnnouncement">
-            소개 글 :
-            {{ details.team_announcement }}
+            {{ details.team_content }}
           </div>
         </div>
       </div>
@@ -30,7 +29,7 @@
 
 <script>
 import axios from "axios";
-
+import swal from "sweetalert2";
 export default {
   name: "teamDetail",
   props: ["teamId"], // teamId 값을 props로 받음
@@ -65,7 +64,10 @@ export default {
           console.log(res.data);
           this.details = res.data;
         } else {
-          alert("안돼");
+          swal.fire({
+            icon: "error",
+            title: "실패",
+          });
         }
       })
       .catch((error) => {
@@ -142,8 +144,8 @@ export default {
 
 .teamAnnouncement {
   text-align: left;
-  font-size: 25px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 400;
   color: hsla(0, 0%, 100%, 0.5);
 }
 .teamInfo {
