@@ -53,11 +53,7 @@ const routes = [
     name: "signUpOk",
     component: signUpOk,
   },
-  // {
-  //   path: "/youtube",
-  //   name: "youtube",
-  //   component: YoutubeView,
-  // },
+
   {
     path: "/myTeam",
     name: "myTeam",
