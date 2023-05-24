@@ -73,6 +73,7 @@
 <script>
 import axios from "axios";
 import router from "@/router";
+import swal from "sweetalert2";
 export default {
   name: "createTeam",
   data() {
@@ -95,7 +96,10 @@ export default {
         this.team_content === "" ||
         this.team_announcement === ""
       ) {
-        alert("모든 항목을 입력해주세요");
+        swal.fire({
+          icon: "info",
+          title: "모든 항목을 입력해주세요",
+        });
         return;
       }
       event.preventDefault();
@@ -141,15 +145,22 @@ export default {
       })
         .then((res) => {
           if (res.data) {
-            router.push({ name: "home" });
+            swal.fire({
+              icon: "success",
+              title: "팀 생성 완료!",
+            });
+            router.push({ name: "getTeam" });
           } else {
-            alert("팀 만들기에 실패하였습니다.");
+            swal.fire({
+              icon: "error",
+              title: "팀 생성 실패!",
+            });
           }
         })
         .catch((error) => {
           if (error.response.status === 401) {
             // 401 Unauthorized 에러 처리
-            alert("로그인이 필요한 서비스 입니다");
+            alert("로그인이 필요한 서비스입니다.");
             router.push({ name: "login" });
           } else {
             // 다른 에러 처리

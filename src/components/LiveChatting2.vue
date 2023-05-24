@@ -1,36 +1,24 @@
 <template>
-  <div id="app">
-    <div class="chat-container">
-      <h2>실시간 채팅</h2>
-      <div class="user-info">
-        <div class="img-box">
+  <div class="chat-container">
+    <div class="chat-history">
+      <p style="margin-left: 5px">실시간 채팅</p>
+      <hr />
+      <div v-for="(item, idx) in recvList" :key="idx" class="message">
+        <div class="img-box2">
           <img :src="require(`@/assets/${user_pic}`)" alt="" class="teamLogo" />
         </div>
-        <div class="user-name">{{ userName }}</div>
+        <div class="user-name1">{{ item.userName }}</div>
+        <div class="message-content">{{ item.content }}</div>
       </div>
+    </div>
 
-      <div class="chat-history">
-        <div v-for="(item, idx) in recvList" :key="idx" class="message">
-          <div class="img-box2">
-            <img
-              :src="require(`@/assets/${user_pic}`)"
-              alt=""
-              class="teamLogo"
-            />
-          </div>
-          <div class="user-name1">{{ item.userName }}</div>
-          <div class="message-content">{{ item.content }}</div>
-        </div>
-      </div>
-
-      <div class="message-input">
-        <input
-          v-model="message"
-          type="text"
-          @keyup.enter="sendMessage"
-          placeholder="메시지를 입력하세요"
-        />
-      </div>
+    <div class="message-input">
+      <input
+        v-model="message"
+        type="text"
+        @keyup.enter="sendMessage"
+        placeholder="메시지를 입력하세요"
+      />
     </div>
   </div>
 </template>
@@ -121,11 +109,9 @@ export default {
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 600px;
+  height: 480px;
   margin: 0 auto;
-  padding: 40px;
   box-sizing: border-box;
-  background-color: #f6f6f6;
   border-radius: 5px;
   font-family: "NanumBarunGothic";
 }
@@ -173,6 +159,9 @@ export default {
   background-color: #ffffff;
   border: 1px solid #eaeaea;
   border-radius: 5px;
+
+  width: 323px;
+  margin-left: 20px;
 }
 
 .message {
@@ -191,6 +180,7 @@ export default {
 .message-input {
   display: flex;
   align-items: center;
+  margin-left: 20px;
 }
 
 .message-input input {

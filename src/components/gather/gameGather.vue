@@ -57,6 +57,7 @@ import axios from "axios";
 import router from "@/router";
 import KakaoMap from "@/components/map/KakaoMap.vue";
 import { Bootpay } from "@bootpay/client-js";
+import swal from "sweetalert2";
 export default {
   name: "gameGather",
   components: {
@@ -149,7 +150,11 @@ export default {
         });
         console.log(response); // 결제 요청 결과를 출력하거나 처리합니다.
         this.gameGather();
-        alert("결제 완료 및 등록 되었습니다.");
+        swal.fire({
+          icon: "success",
+          title: "결제가 완료되었습니다!\n경기 일정 생성 완료!",
+        });
+        router.push({ name: "listGather" });
       } catch (error) {
         console.error(error); // 오류 처리를 합니다.
       }
@@ -161,7 +166,10 @@ export default {
 
       console.log(this.gather_announcement);
       if (this.gather_date === "" || this.gather_announcement === "") {
-        alert("모든 항목을 입력해주세요.");
+        swal.fire({
+          icon: "info",
+          title: "모든 항목을 입력해주세요",
+        });
         return;
       }
 
@@ -193,9 +201,15 @@ export default {
       })
         .then((res) => {
           if (res.data) {
-            router.push({ name: "home" });
+            swal.fire({
+              icon: "success",
+              title: "결제가 완료되었습니다!\n경기 일정 생성 완료!",
+            });
           } else {
-            alert("팀 공고 만들기에 실패하였습니다.");
+            swal.fire({
+              icon: "error",
+              title: "경기 일정 생성 실패!",
+            });
           }
         })
         .catch((error) => {

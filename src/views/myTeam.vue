@@ -2,6 +2,7 @@
   <div>
     <side-nav></side-nav>
     <RouterView></RouterView>
+    <UserList></UserList>
   </div>
 </template>
 

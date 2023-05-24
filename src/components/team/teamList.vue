@@ -107,7 +107,7 @@ export default {
   padding: 20px 40px;
   border-radius: 10px;
   overflow: hidden;
-  background-color: #034f36;
+  background-color: #073525;
   transition: transform 0.2s; /* 추가: 호버 효과를 위한 transition 설정 */
   border-color: #dbdbdb;
 }

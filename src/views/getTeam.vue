@@ -1,7 +1,6 @@
 <template>
   <div class="getTeam">
     <h4 class="team_list_h4">전체 팀 리스트</h4>
-
     <div class="search-container">
       <input
         type="text"
