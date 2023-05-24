@@ -1,15 +1,6 @@
 <template>
   <div class="RankingContainer">
-    <!-- <div class="ranking">
-      <div class="teamRank">랭크</div>
-      <div class="box">로고</div>
-      <div class="teamName">이름</div>
-      <div class="teamScore">승점</div>
-      <div class="teamWin">승</div>
-      <div class="teamWin">무</div>
-      <div class="teamWin">패</div>
-    </div> -->
-
+    <div style="font-size: 18px; font-weight: 700; color: white">리그 순위</div>
     <div class="topRank">
       <div class="topRanknig">{{ top.ranking }}</div>
       <div class="topbox">
@@ -25,13 +16,32 @@
         <div class="topName">{{ top.team_name }}</div>
         <div class="topScore">{{ top.score }} Points</div>
         <div class="winContainer">
-          <div class="topWin">W: {{ top.team_win }}</div>
-          <div class="topWin">D: {{ top.team_draw }}</div>
-          <div class="topWin">L :{{ top.team_lose }}</div>
+          <div class="topWin">{{ top.team_win }}승</div>
+          <div class="topWin">{{ top.team_draw }}무</div>
+          <div class="topWin">{{ top.team_lose }}패</div>
         </div>
       </div>
     </div>
     <div class="twoContainer">
+      <div
+        style="
+          display: flex;
+          font-size: 12px;
+          font-weight: 400;
+          color: #777;
+          margin-top: 20px;
+        "
+      >
+        <div style="flex: 1">순위</div>
+        <div style="width: 24px"></div>
+        <div style="flex: 1; text-align: left; text-indent: 10px">팀</div>
+        <div style="flex: 1">포인트</div>
+        <div style="flex: 2; display: flex">
+          <div style="flex: 1">승</div>
+          <div style="flex: 1">무</div>
+          <div style="flex: 1">패</div>
+        </div>
+      </div>
       <div class="ranking" v-for="(rank, i) in ranking" :key="i">
         <div class="teamRank">{{ rank.ranking }}</div>
         <div class="box">
@@ -44,11 +54,11 @@
           </div>
         </div>
         <div class="teamName">{{ rank.team_name }}</div>
-        <div class="teamScore">{{ rank.score }} Pts</div>
+        <div class="teamScore">{{ rank.score }}</div>
         <div class="winCon">
-          <div class="teamWin">W:{{ rank.team_win }}</div>
-          <div class="teamWin">D:{{ rank.team_draw }}</div>
-          <div class="teamWin">L:{{ rank.team_lose }}</div>
+          <div class="teamWin">{{ rank.team_win }}</div>
+          <div class="teamWin">{{ rank.team_draw }}</div>
+          <div class="teamWin">{{ rank.team_lose }}</div>
         </div>
       </div>
     </div>
@@ -97,38 +107,36 @@ export default {
   margin-top: 100px;
   display: flex;
   flex-direction: column;
-  width: 700px;
-  height: 700px;
-  background-color: #102137;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+  width: 360px;
+  height: 568px;
+  padding: 44px 32px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16.5px);
   letter-spacing: 2px;
-  border-radius: 10px;
+  font-weight: 500;
 }
 .twoContainer {
+  width: 296px;
   font-family: "NanumBarunGothic";
-  padding: 0 60px;
   margin: 0 auto;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  width: 700px;
 }
 .topRank {
   font-family: "NanumBarunGothic";
   display: flex;
-  background-color: #cdfe61;
-  height: 250px;
-  color: #102137;
+  height: 160px;
+  color: white;
 }
 .ranking {
-  margin-top: 20px;
+  margin-top: 11px;
   color: white;
-  height: 80px;
-  background-color: #102137;
+  height: 46px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  border-bottom: 1px solid #dbdbdb;
 }
 .teamLogo {
   width: 100%;
@@ -136,32 +144,39 @@ export default {
   object-fit: cover;
 }
 .box {
-  flex: 1;
   font-size: 12px;
 }
 .winCon {
   display: flex;
-  flex: 1;
+  flex: 2;
 }
 .imgBox {
-  width: 55px;
-  height: 55px;
+  width: 24px;
+  height: 24px;
   overflow: hidden;
 }
 .teamRank {
-  font-size: 20px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #777;
   flex: 1;
 }
 .teamName {
-  font-size: 20px;
+  font-size: 13px;
+  font-weight: 400;
+
   flex: 1;
 }
 .teamScore {
-  font-size: 17px;
+  font-size: 13px;
+  font-weight: 400;
+  color: white;
   flex: 1;
 }
 .teamWin {
   font-size: 13px;
+  font-weight: 400;
+  color: #777;
   flex: 1;
 }
 
@@ -173,13 +188,13 @@ export default {
 }
 .topimgBox {
   margin-left: 30px;
-  width: 180px;
-  height: 180px;
+  width: 80px;
+  height: 80px;
   overflow: hidden;
 }
 .topRanknig {
   text-align: center;
-  font-size: 60px;
+  font-size: 30px;
   flex: 1;
   align-self: flex-end;
   margin-bottom: 10px;
@@ -191,21 +206,21 @@ export default {
   flex: 3;
   align-items: center;
   justify-content: flex-end;
-  margin-bottom: 50px;
+  margin-bottom: 14px;
 }
 .topName {
-  font-size: 40px;
+  font-size: 26px;
   margin-bottom: 10px;
 }
 .topScore {
-  font-size: 25px;
+  font-size: 14px;
   margin-bottom: 10px;
 }
 .winContainer {
   display: flex;
 }
 .topWin {
-  font-size: 15px;
+  font-size: 14px;
   flex: 1;
   width: 60px;
   text-align: center;

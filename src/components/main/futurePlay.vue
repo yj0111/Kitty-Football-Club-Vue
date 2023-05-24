@@ -1,5 +1,5 @@
 <template>
-  <div class="containerFuture">
+  <div class="containerFuture2">
     <div class="title">
       <div class="day">{{ formatDate(daytoday) }}</div>
       <div class="day">{{ formatDate(daytomorrow) }}</div>
@@ -19,7 +19,7 @@
                     class="teamLogo"
                   />
                 </div>
-                <div>{{ todays.team1_name }}</div>
+                <div class="teamName">{{ todays.team1_name }}</div>
               </div>
               <div class="vs">VS</div>
               <div class="play">
@@ -30,7 +30,7 @@
                     class="teamLogo"
                   />
                 </div>
-                <div>{{ todays.team2_name }}</div>
+                <div class="teamName">{{ todays.team2_name }}</div>
               </div>
             </div>
           </div>
@@ -49,7 +49,7 @@
                     class="teamLogo"
                   />
                 </div>
-                <div>{{ tommos.team1_name }}</div>
+                <div class="teamName">{{ tommos.team1_name }}</div>
               </div>
               <div class="vs">VS</div>
               <div class="play">
@@ -60,7 +60,7 @@
                     class="teamLogo"
                   />
                 </div>
-                <div>{{ tommos.team2_name }}</div>
+                <div class="teamName">{{ tommos.team2_name }}</div>
               </div>
             </div>
           </div>
@@ -79,7 +79,7 @@
                     class="teamLogo"
                   />
                 </div>
-                <div>{{ sands.team1_name }}</div>
+                <div class="teamName">{{ sands.team1_name }}</div>
               </div>
               <div class="vs">VS</div>
               <div class="play">
@@ -90,7 +90,7 @@
                     class="teamLogo"
                   />
                 </div>
-                <div>{{ sands.team2_name }}</div>
+                <div class="teamName">{{ sands.team2_name }}</div>
               </div>
             </div>
           </div>
@@ -166,6 +166,15 @@ export default {
 </script>
 
 <style scoped>
+.containerFuture2 {
+  margin: 0 auto;
+  width: 1300px;
+  font-family: "NanumBarunGothic";
+  background-color: #102137;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  margin-top: 30px;
+}
 .content {
   display: flex;
 }
@@ -173,8 +182,10 @@ export default {
   display: flex;
 }
 .day {
+  margin-top: 10px;
   flex: 1;
   text-align: center;
+  color: white;
   vertical-align: middle;
 }
 .contentDetail {
@@ -190,9 +201,14 @@ export default {
   margin-top: 20px;
 }
 .playContent {
+  margin-top: 20px;
   display: flex;
+  align-items: center;
+  text-align: center;
 }
 .play {
+  margin-top: 20px;
+  align-items: center;
   display: flex;
   flex-direction: column;
   flex: 2;
@@ -201,10 +217,13 @@ export default {
   flex: 1;
 }
 .gameCard {
-  width: 200px;
-  height: 150px;
-  background-color: lightslategrey;
+  width: 350px;
+  height: 250px;
+  background-color: #ffffff;
+  opacity: 0.5;
   margin-bottom: 32px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
 }
 .teamLogo {
   width: 100%;
@@ -212,12 +231,23 @@ export default {
   object-fit: cover;
 }
 .imgBox {
-  width: 70px;
-  height: 70px;
-  border-radius: 70%;
+  width: 100px;
+  height: 100px;
+
   overflow: hidden;
 }
 .containerFuture {
   margin-top: 15px;
+}
+.date {
+  font-size: 15px;
+  font-weight: bold;
+  font-family: "NanumBarunGothicBold";
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.teamName {
+  margin-top: 10px;
+  font-size: 20px;
 }
 </style>

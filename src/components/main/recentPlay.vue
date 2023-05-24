@@ -1,5 +1,8 @@
 <template>
   <div class="containerPlay">
+    <div style="font-size: 18px; font-weight: 700; color: white">
+      지난 경기 결과
+    </div>
     <div class="play1" v-for="(record, i) in records" :key="i">
       <div class="nameCon">
         <div class="box">
@@ -25,13 +28,14 @@
           >
             {{ record.team1_score }}&nbsp;
           </div>
+          <span>:&nbsp;</span>
           <div
             :class="{
               win: true,
               lose: record.team2_score < record.team1_score,
             }"
           >
-            : {{ record.team2_score }}
+            {{ record.team2_score }}
           </div>
         </div>
       </div>
@@ -91,14 +95,15 @@ export default {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  width: 500px;
-  height: 500px;
-  background-color: #102137;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+  width: 324px;
+  height: 568px;
+  padding: 44px 32px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16.5px);
   letter-spacing: 2px;
-  border-radius: 10px;
 }
 .play1 {
+  border-top: 1px solid hsla(0, 0%, 85%, 0.1);
   font-size: 10px;
   color: white;
   display: flex;
@@ -117,7 +122,7 @@ export default {
   flex: 1;
 }
 .teamName {
-  font-size: 22px;
+  font-size: 13px;
   flex: 1;
 
   color: white;
@@ -131,14 +136,14 @@ export default {
   justify-content: center;
 }
 .imgBox {
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
 
   overflow: hidden;
 }
 .nameCon {
   display: flex;
-  flex: 2;
+  flex: 1;
   flex-direction: column;
   align-items: center;
 }
@@ -161,14 +166,14 @@ export default {
     top 0.2s ease 0s;
 } */
 .win {
-  color: #cdfe61;
+  color: #f2cd00;
 }
 .lose {
   color: white;
 }
 .score {
-  font-size: 26px;
-  color: #cdfe61;
+  font-size: 24px;
+  font-weight: 700;
   flex: 1;
   text-align: center;
   display: flex;
@@ -176,8 +181,9 @@ export default {
   margin-bottom: 110px;
 }
 .date {
-  font-size: 16px;
-  color: white;
-  margin-bottom: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  color: hsla(0, 0%, 100%, 0.5);
+  margin-bottom: 30px;
 }
 </style>

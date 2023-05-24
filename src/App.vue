@@ -19,11 +19,23 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .containerApp {
   width: 100%;
   /* margin: 0 auto; */
   margin: 0;
   padding: 0;
+
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  min-height: 100%;
+  margin: 0 auto;
 }
 </style>
