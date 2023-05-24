@@ -1,29 +1,25 @@
 <template>
-  <div class="managementContainer">
-    <div class="title">
-      <div class="titleCont"></div>
-      <div class="titleCont">이름</div>
-      <div class="titleCont">생년월일</div>
-      <div class="titleCont">이메일</div>
-      <div class="titleCont">가입일</div>
-      <div class="titleCont"></div>
-    </div>
-    <div class="content">
-      <div class="person" v-for="(peoples, i) in people" :key="i">
-        <div class="contents">
-          <div class="imgBox">
+  <div class="concon">
+    <div class="listText">멤버 리스트</div>
+    <div class="UserList">
+      <div class="user" v-for="(user, i) in users" :key="i">
+        <div class="box">
+          <div class="pic">
             <img
-              :src="require(`@/assets/${peoples.user_pic}`)"
-              alt=""
-              class="teamLogo"
+              :src="require(`@/assets/${user.user_pic}`)"
+              alt="프로필사진"
+              class="userpic"
+              id="pic"
             />
           </div>
+          <div class="userInfo">
+            <div class="userName">{{ user.user_name }}</div>
+            <div class="userBirth">{{ user.user_birth }}</div>
+            <div class="userAddress">{{ user.user_address }}</div>
+            <div class="userEmail">{{ user.user_email }}</div>
+          </div>
+          <button @click="Out(user.id)">추방하자</button>
         </div>
-        <div class="contents">{{ peoples.user_name }}</div>
-        <div class="contents">{{ peoples.user_birth }}</div>
-        <div class="contents">{{ peoples.user_email }}</div>
-        <div class="contents">{{ peoples.user_team_join_date }}</div>
-        <button @click="Out(peoples.id)">추방하자</button>
       </div>
     </div>
   </div>
@@ -32,15 +28,17 @@
 <script>
 import axios from "axios";
 export default {
-  name: "teamManagement",
+  name: "UserList",
+  props: ["teamId"], // teamId 값을 props로 받음
   data() {
     return {
-      people: [],
+      users: [],
     };
   },
   created() {
     const REST_API = "http://localhost:9999";
-    const API_URL = `${REST_API}/teamManage/list`;
+    const API_URL = `${REST_API}/teamManage/list2`;
+
     const jsessionIdCookie = document.cookie
       .split("; ")
       .find((cookie) => cookie.startsWith("JSESSIONID="));
@@ -50,21 +48,23 @@ export default {
       console.log(jsessionId);
     }
     axios({
+      headers: {
+        Cookie: `JSESSIONID=${jsessionId}`,
+      },
       url: API_URL,
       method: "GET",
       withCredentials: true,
     })
       .then((res) => {
-        console.log(res.data);
         if (res.data) {
           console.log(res.data);
-          this.people = res.data;
+          this.users = res.data;
         } else {
-          alert("멤버가 없네요");
+          alert("안돼");
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.error(error);
       });
   },
   methods: {
@@ -106,22 +106,106 @@ export default {
 </script>
 
 <style scoped>
-.title {
+.userpic {
+  width: 200px;
+  height: 100%;
+  object-fit: cover;
+}
+.listText {
+  text-indent: 252px;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+}
+.concon {
+  background: url(@/assets/mainback.png) 50% 50% / cover no-repeat;
+  width: 100%;
+  margin: 0 auto;
+  padding: 100px;
+}
+.UserList {
+  width: 80%;
+  margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  font-family: "NanumBarunGothic";
+  letter-spacing: 1.5px;
+  justify-content: center;
+  padding-bottom: 40px;
 }
-.titleCont {
-  text-align: center;
-  flex: 1;
+
+.user {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
-.content {
+
+.box {
   display: flex;
   flex-direction: column;
+  width: 240px;
+  height: 350px;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16.5px);
+  transition: transform 0.2s;
 }
-.person {
+
+.box:hover {
+  transform: scale(1.05);
+}
+
+.pic {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.userInfo {
   display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-top: 14px;
 }
-.contents {
-  flex: 1;
-  text-align: center;
+
+.userName {
+  font-size: 18px;
+
+  font-weight: bold;
+  color: white;
+  text-align: left;
+  margin-left: 0;
+  width: 100px;
+}
+
+.userBirth {
+  font-size: 14px;
+
+  color: hsla(0, 0%, 100%, 0.5);
+  width: 100px;
+  text-align: left;
+  margin-left: 0;
+}
+
+.userAddress {
+  font-size: 13px;
+
+  color: hsla(0, 0%, 100%, 0.5);
+  width: 100px;
+  text-align: left;
+  margin-left: 0;
+}
+.userEmail {
+  font-size: 13px;
+
+  color: hsla(0, 0%, 100%, 0.5);
+  width: 100px;
+  margin-left: 0;
+  text-align: left;
 }
 </style>

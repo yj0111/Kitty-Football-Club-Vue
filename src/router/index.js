@@ -6,7 +6,6 @@ import footballNews from "../views/footballNews.vue";
 import createTeam from "../views/createTeam.vue";
 import getTeam from "../views/getTeam.vue";
 import signUp from "../views/signUp.vue";
-import signUpOk from "../views/signUpOk.vue";
 import myTeam from "../views/myTeam.vue";
 import gameGather from "../views/teamGather.vue";
 import listGather from "../views/listGather.vue";
@@ -47,11 +46,6 @@ const routes = [
     path: "/signUp",
     name: "signUp",
     component: signUp,
-  },
-  {
-    path: "/signUpOk",
-    name: "signUpOk",
-    component: signUpOk,
   },
 
   {
