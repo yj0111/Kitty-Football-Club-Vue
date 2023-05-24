@@ -25,7 +25,14 @@
               <div class="play">
                 <div class="imgBox">
                   <img
+                    v-if="todays.team2_logo !== ''"
                     :src="require(`@/assets/${todays.team2_logo}`)"
+                    alt=""
+                    class="teamLogo"
+                  />
+                  <img
+                    v-else
+                    src="@/assets/what_white.png"
                     alt=""
                     class="teamLogo"
                   />
@@ -55,7 +62,14 @@
               <div class="play">
                 <div class="imgBox">
                   <img
+                    v-if="tommos.team2_logo !== ''"
                     :src="require(`@/assets/${tommos.team2_logo}`)"
+                    alt=""
+                    class="teamLogo"
+                  />
+                  <img
+                    v-else
+                    src="@/assets/what_white.png"
                     alt=""
                     class="teamLogo"
                   />
@@ -85,7 +99,14 @@
               <div class="play">
                 <div class="imgBox">
                   <img
+                    v-if="sands.team2_logo !== ''"
                     :src="require(`@/assets/${sands.team2_logo}`)"
+                    alt=""
+                    class="teamLogo"
+                  />
+                  <img
+                    v-else
+                    src="@/assets/what_white.png"
                     alt=""
                     class="teamLogo"
                   />
@@ -154,9 +175,10 @@ export default {
   },
   methods: {
     formatDate(date) {
+      const year = date.getFullYear(); // 연도
       const month = date.getMonth() + 1;
       const day = date.getDate();
-      return `${this.padZero(month)}-${this.padZero(day)}`;
+      return `${year}.${this.padZero(month)}.${this.padZero(day)}`;
     },
     padZero(value) {
       return value.toString().padStart(2, "0");
@@ -170,12 +192,15 @@ export default {
   margin: 0 auto;
   width: 1300px;
   font-family: "NanumBarunGothic";
-  background-color: #102137;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
   border-radius: 10px;
   margin-top: 30px;
+  /* background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16.5px); */
+  letter-spacing: 1px;
+  font-weight: 500;
 }
 .content {
+  align-items: baseline;
   display: flex;
 }
 .title {
@@ -201,7 +226,6 @@ export default {
   margin-top: 20px;
 }
 .playContent {
-  margin-top: 20px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -214,25 +238,37 @@ export default {
   flex: 2;
 }
 .vs {
-  flex: 1;
+  flex: 2;
+  font-size: 22px;
+  color: hsla(0, 0%, 100%, 0.5);
+  letter-spacing: 2px;
+  font-weight: bold;
 }
 .gameCard {
-  width: 350px;
-  height: 250px;
-  background-color: #ffffff;
-  opacity: 0.5;
+  padding: 22px 25px;
+  width: 330px;
+  height: 200px;
+  /* background-color: #034f36; */
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16.5px);
+  opacity: 0.9;
   margin-bottom: 32px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+
   border-radius: 10px;
 }
+.gameCard:hover {
+  background-color: #034f36;
+  opacity: 0.7;
+}
+
 .teamLogo {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 .imgBox {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
 
   overflow: hidden;
 }
@@ -240,14 +276,15 @@ export default {
   margin-top: 15px;
 }
 .date {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
   font-family: "NanumBarunGothicBold";
   margin-left: 10px;
-  margin-top: 10px;
+  color: hsla(0, 0%, 100%, 0.5);
 }
 .teamName {
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 17px;
+  color: white;
 }
 </style>

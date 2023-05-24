@@ -1,16 +1,17 @@
 <template>
   <div>
+    <side-nav></side-nav>
     <RouterView></RouterView>
     <UserList></UserList>
   </div>
 </template>
 
 <script>
-import UserList from "@/components/team/UserList.vue";
+import SideNav from "@/components/SideNav.vue";
 export default {
   name: "myTeam",
   components: {
-    UserList,
+    SideNav,
   },
 };
 </script>
