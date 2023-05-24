@@ -175,17 +175,24 @@ export default {
 <style scoped>
 .createTeam-wrapper {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 1000px;
+  background: url(@/assets/insertback.png) 50% 50% / cover no-repeat;
+  width: 100%;
+  margin: 0 auto;
 }
 .createTeam-form {
+  /* padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 100px; */
+  padding: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 16px;
-  margin-top: 20px; /* 적절한 값으로 조정 */
-  padding-bottom: 50px;
+  /* margin-top: 20px; 적절한 값으로 조정 */
+  background-color: hsla(0, 0%, 100%, 0.9);
+  backdrop-filter: blur(3px);
 }
 
 .createTeam-form input,
@@ -228,7 +235,7 @@ export default {
 
 .createTeam-button {
   padding: 10px 20px;
-  background-color: #102137;
+  background-color: #034f36;
   width: 400px;
   color: #f5f6ff;
   height: 62px;

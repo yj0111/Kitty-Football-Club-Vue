@@ -288,9 +288,9 @@ export default {
 <style scoped>
 .signup-wrapper {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 1100px;
 }
 .signup-form {
   display: flex;
@@ -344,7 +344,7 @@ export default {
 
 .signup-button {
   padding: 10px 20px;
-  background-color: #102137;
+  background-color: #034f36;
   width: 400px;
   color: #f5f6ff;
   height: 62px;

@@ -251,10 +251,12 @@ export default {
 
 <style scoped>
 .gameGather-wrapper {
+  background: url(@/assets/insertback.png) 50% 50% / cover no-repeat;
+  margin: 0 auto;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 1100px;
   font-family: "NanumBarunGothic";
 }
 
@@ -262,8 +264,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 400px;
-  margin-top: 50px; /* 적절한 값으로 조정 */
+  background-color: hsla(0, 0%, 100%, 0.9);
+  backdrop-filter: blur(3px);
+  width: 500px;
+  padding: 70px;
 }
 
 .selectedStadium {
@@ -305,7 +309,7 @@ export default {
 }
 .gameGather-button {
   padding: 10px 20px;
-  background-color: #102137;
+  background-color: #034f36;
   width: 400px;
   color: #f5f6ff;
   height: 62px;
