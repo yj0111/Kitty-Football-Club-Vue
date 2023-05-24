@@ -1,7 +1,7 @@
 <template>
   <div class="gatherList">
     <div class="row">
-      <div style="margin-left: 666px; margin-bottom: 30px">
+      <div style="margin-bottom: 30px">
         <span class="h3" @click="changedateM">
           <b-icon icon="chevron-double-left"></b-icon>
         </span>
@@ -226,6 +226,9 @@ export default {
 
 .logoPic {
   flex: 2;
+}
+.row {
+  justify-content: center;
 }
 
 .teamLogo {

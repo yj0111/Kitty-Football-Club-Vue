@@ -1,20 +1,23 @@
 <template>
-  <div class="UserList">
-    <div class="user" v-for="(user, i) in users" :key="i">
-      <div class="box">
-        <div class="pic">
-          <img
-            :src="require(`@/assets/${user.user_pic}`)"
-            alt="프로필사진"
-            class="userpic"
-            id="pic"
-          />
-        </div>
-        <div class="userInfo">
-          <div class="userName">{{ user.user_name }}</div>
-          <div class="userBirth">{{ user.user_birth }}</div>
-          <div class="userAddress">{{ user.user_address }}</div>
-          <div class="userEmail">{{ user.user_email }}</div>
+  <div class="concon">
+    <div class="listText">멤버 리스트</div>
+    <div class="UserList">
+      <div class="user" v-for="(user, i) in users" :key="i">
+        <div class="box">
+          <div class="pic">
+            <img
+              :src="require(`@/assets/${user.user_pic}`)"
+              alt="프로필사진"
+              class="userpic"
+              id="pic"
+            />
+          </div>
+          <div class="userInfo">
+            <div class="userName">{{ user.user_name }}</div>
+            <div class="userBirth">{{ user.user_birth }}</div>
+            <div class="userAddress">{{ user.user_address }}</div>
+            <div class="userEmail">{{ user.user_email }}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -72,7 +75,16 @@ export default {
   height: 100%;
   object-fit: cover;
 }
-
+.listText {
+  text-indent: 252px;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+}
+.concon {
+  width: 80%;
+  margin: 0 auto;
+}
 .UserList {
   width: 80%;
   margin: 0 auto;
@@ -82,7 +94,6 @@ export default {
   font-family: "NanumBarunGothic";
   letter-spacing: 1.5px;
   justify-content: center;
-  padding-top: 40px;
   padding-bottom: 40px;
 }
 

@@ -31,7 +31,9 @@ export default {
 
 <style scoped>
 .topContainer {
+  justify-content: center;
   padding: 100px;
+  padding-bottom: 70px;
   display: flex;
 }
 .containerMyTeamMainView {

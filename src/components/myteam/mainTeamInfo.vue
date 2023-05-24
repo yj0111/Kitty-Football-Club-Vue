@@ -7,7 +7,6 @@
           alt="로고입니당"
           class="teamLogo"
           id="logo"
-          style="width: 200px; height: 200px"
         />
       </div>
       <div class="detail1">
@@ -20,6 +19,7 @@
           </div>
           <div class="teamCnt">팀원 :{{ details.total_cnt }}명</div>
           <div class="teamAnnouncement">
+            소개 글 :
             {{ details.team_announcement }}
           </div>
         </div>
@@ -77,29 +77,31 @@ export default {
 
 <style scoped>
 .teamLogo {
-  width: 200px;
-  height: 180px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
 .teamDetail {
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(16.5px);
-
+  height: 568px;
+  margin-right: 30px;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-
-  border-radius: 10px;
+  align-items: center;
 }
 .teamDetailContainer {
   letter-spacing: 1.5px;
-  width: 80%;
   margin: 0 auto;
   font-family: "NanumBarunGothic";
 }
 .detail {
+  width: 300px;
+  height: 300px;
   margin-left: 40px;
+  overflow: hidden;
 }
 .detail1 {
   width: 465px;
@@ -107,7 +109,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  cursor: pointer;
   color: white;
 }
 
@@ -121,22 +122,31 @@ export default {
   vertical-align: middle;
 }
 .teamName {
-  font-size: 50px;
+  font-weight: bold;
+  font-size: 60px;
   text-align: left;
 }
 .teamRank {
   text-align: left;
-  color: #8e8e8e;
+  font-size: 40px;
+  font-weight: 700;
+  color: hsla(0, 0%, 100%, 0.5);
 }
 .teamCnt,
 .teamWin {
   text-align: left;
-  font-size: 14px;
-  color: #8e8e8e;
+  font-size: 25px;
+  font-weight: 700;
+  color: hsla(0, 0%, 100%, 0.5);
 }
 
 .teamAnnouncement {
   text-align: left;
-  color: #cdfe61;
+  font-size: 25px;
+  font-weight: 700;
+  color: hsla(0, 0%, 100%, 0.5);
+}
+.teamInfo {
+  text-indent: 50px;
 }
 </style>
