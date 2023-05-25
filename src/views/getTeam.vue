@@ -73,6 +73,7 @@ export default {
 }
 
 .search-container {
+  margin-right: 192px;
   display: flex;
   align-items: center;
   justify-content: flex-end;

@@ -99,9 +99,9 @@ export default {
 
       // 구성 요소를 기반으로 Date 객체를 생성합니다.
       const dateObj = new Date(
-        parseInt(`20${year}`, 10) - 4,
+        parseInt(`20${year}`, 10) - 2,
         parseInt(month, 10) - 1,
-        parseInt(day, 10) + 2,
+        parseInt(day, 10) + 1,
         parseInt(hour, 10),
         parseInt(minute, 10)
       );
