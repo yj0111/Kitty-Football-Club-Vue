@@ -160,7 +160,10 @@ export default {
         .catch((error) => {
           if (error.response.status === 401) {
             // 401 Unauthorized 에러 처리
-            alert("로그인이 필요한 서비스입니다.");
+            swal.fire({
+              icon: "info",
+              title: "로그인이 필요한 서비스 입니다",
+            });
             router.push({ name: "login" });
           } else {
             // 다른 에러 처리

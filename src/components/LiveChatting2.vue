@@ -5,7 +5,11 @@
       <hr />
       <div v-for="(item, idx) in recvList" :key="idx" class="message">
         <div class="img-box2">
-          <img :src="require(`@/assets/${user_pic}`)" alt="" class="teamLogo" />
+          <img
+            :src="require(`@/assets/${item.user_pic}`)"
+            alt=""
+            class="teamLogo"
+          />
         </div>
         <div class="user-name1">{{ item.userName }}</div>
         <div class="message-content">{{ item.content }}</div>
@@ -46,11 +50,13 @@ export default {
   },
   mounted() {
     const storedLoginData = localStorage.getItem("loginData");
+    console.log(this.userName);
     console.log(storedLoginData);
     if (storedLoginData) {
       const loginData = JSON.parse(storedLoginData);
 
       this.$store.commit("LOGIN_DATA", loginData);
+
       console.log(this.userName);
     }
   },
@@ -71,6 +77,7 @@ export default {
         const msg = {
           userName: this.userName,
           content: this.message,
+          user_pic: this.user_pic,
         };
         this.stompClient.send("/receive", JSON.stringify(msg), {});
       }
@@ -93,6 +100,7 @@ export default {
 
             // 받은 데이터를 json으로 파싱하고 리스트에 넣어줍니다.
             this.recvList.push(JSON.parse(res.body));
+            console.log(this.recvList);
           });
         },
         (error) => {

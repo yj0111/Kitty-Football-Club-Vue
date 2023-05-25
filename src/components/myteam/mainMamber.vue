@@ -26,6 +26,8 @@
 
 <script>
 import axios from "axios";
+import router from "@/router";
+import swal from "sweetalert2";
 export default {
   name: "UserList",
   props: ["teamId"], // teamId 값을 props로 받음
@@ -63,7 +65,17 @@ export default {
         }
       })
       .catch((error) => {
-        console.error(error);
+        if (error.response.status === 401) {
+          // 401 Unauthorized 에러 처리
+          swal.fire({
+            icon: "info",
+            title: "로그인이 필요한 서비스 입니다",
+          });
+          router.push({ name: "login" });
+        } else {
+          // 다른 에러 처리
+          console.error(error);
+        }
       });
   },
 };
