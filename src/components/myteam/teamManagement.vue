@@ -1,5 +1,7 @@
 <template>
   <div class="concon">
+    <div class="listText" style="margin-bottom: 10px">승패 등록하기</div>
+    <insert-game-result></insert-game-result>
     <div class="listText">멤버 리스트</div>
     <div class="UserList">
       <div class="user" v-for="(user, i) in users" :key="i">
@@ -31,8 +33,11 @@
 <script>
 import swal from "sweetalert2";
 import axios from "axios";
+import insertGameResult from "./insertGameResult.vue";
 export default {
   name: "UserList",
+  components: { insertGameResult },
+
   props: ["teamId"], // teamId 값을 props로 받음
   data() {
     return {
@@ -153,6 +158,7 @@ export default {
   width: 100%;
   margin: 0 auto;
   padding: 100px;
+  letter-spacing: 1.5px;
 }
 .UserList {
   width: 80%;

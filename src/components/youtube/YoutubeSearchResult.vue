@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="youtubeContainer">
     <div class="youtube-list">
       <youtube-video-item
         v-for="(video, index) in visibleVideos"
@@ -30,6 +30,10 @@ export default {
 </script>
 
 <style scoped>
+.youtubeContainer {
+  width: 80%;
+  margin: 0 auto;
+}
 .youtube-list {
   text-align: center;
   padding: 10px 100px;

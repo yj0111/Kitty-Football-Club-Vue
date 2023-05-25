@@ -36,7 +36,7 @@
       </div>
       <div class="nameContent">{{ record.team2_name }}</div>
       <div>
-        <button @click="insert(record)" class="gobutton">등록하기</button>
+        <button @click="insert(record)" class="btn">등록하기</button>
       </div>
     </div>
   </div>
@@ -124,12 +124,12 @@ export default {
           if (res.data) {
             swal.fire({
               icon: "success",
-              title: "등록 완료!!!",
+              title: "등록 되었습니다.",
             });
           } else {
             swal.fire({
               icon: "error",
-              title: "등록 실패!!!",
+              title: "등록에 실패하였습니다.",
             });
           }
         })
@@ -142,6 +142,28 @@ export default {
 </script>
 
 <style scoped>
+.btn {
+  margin-top: 24px;
+  padding: 10px 20px;
+  background-color: #034f36;
+  width: 150px;
+  height: 50px;
+  color: #f5f6ff;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: "NanumBarunGothic";
+  transition: background-color 0.3s;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.btn:hover {
+  background-color: #ddd;
+}
 .logoContent {
   margin-bottom: 2px;
 }
@@ -149,19 +171,10 @@ export default {
   margin-bottom: 2px;
   flex: 1;
 }
-.gobutton {
-  border: 1px solid white;
-  background-color: #102137;
-  color: white;
-  width: 150px !important;
-  height: 40px;
-  border-radius: 10px;
-  vertical-align: middle;
-  text-align: center;
-  flex: 0.6;
-  margin-top: 26px;
-}
+
 .containerInsert {
+  margin: 0 auto;
+  width: 80%;
   display: flex;
   flex-direction: column;
   font-family: "NanumBarunGothic";
@@ -174,6 +187,7 @@ export default {
   flex: 1;
   margin-top: 26px;
   text-align: center;
+  color: white;
 }
 
 .goalContent {
@@ -186,10 +200,11 @@ export default {
   text-align: center;
   margin-top: 26px;
   font-size: 25px;
-  color: gray;
+  color: hsla(0, 0%, 100%, 0.5);
   font-weight: bold;
 }
 .dateContent {
+  color: white;
   font-size: 20px;
   flex: 2;
   margin-top: 26px;
@@ -199,14 +214,14 @@ export default {
   flex-direction: row;
   display: flex; /* 추가: 내부 요소를 좌우로 정렬하기 위해 flex 컨테이너로 설정 */
   position: relative;
-  border-radius: 3px;
+  border-radius: 10px;
   overflow: hidden;
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16.5px);
   transition: transform 0.2s; /* 추가: 호버 효과를 위한 transition 설정 */
-  border: 1px solid #e5e5e5;
   padding: 15px 40px;
-  margin-left: 130px;
-  margin-right: 130px;
+  margin-left: 50px;
+  margin-right: 50px;
   margin-bottom: 20px;
   height: 110px;
 }
