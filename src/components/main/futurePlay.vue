@@ -144,6 +144,7 @@ export default {
     })
       .then((res) => {
         if (res.data) {
+          console.log(res.data);
           this.today = res.data.today;
           this.tommo = res.data.tommo;
           this.sand = res.data.sand;
