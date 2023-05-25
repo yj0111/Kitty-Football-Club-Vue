@@ -11,7 +11,7 @@
 <script>
 import Vue from "vue";
 import VModal from "vue-js-modal";
-import TeamModal2 from "@/components/TeamModal2.vue";
+import TeamModal2 from "@/components/myteam/TeamModal2.vue";
 import gatherList from "@/components/gather/gatherList.vue";
 import gatherDetail from "@/components/myteam/gatherDetail.vue";
 Vue.use(VModal);

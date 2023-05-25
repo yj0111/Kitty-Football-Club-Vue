@@ -21,7 +21,7 @@
 
 <script>
 import { mapState } from "vuex";
-import LiveChatting2 from "@/components/LiveChatting2.vue";
+import LiveChatting2 from "@/components/myteam/LiveChatting2.vue";
 
 export default {
   name: "YoutubeVideoDetail",

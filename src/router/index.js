@@ -9,7 +9,7 @@ import signUp from "../views/signUp.vue";
 import myTeam from "../views/myTeam.vue";
 import gameGather from "../views/teamGather.vue";
 import listGather from "../views/listGather.vue";
-import LiveChatting from "../components/LiveChatting.vue";
+import LiveChatting from "../components/myteam/LiveChatting";
 import teamManagement from "../components/myteam/teamManagement.vue";
 import MainView from "../views/MainView.vue";
 import myTeamMain from "../views/myTeamMain.vue";

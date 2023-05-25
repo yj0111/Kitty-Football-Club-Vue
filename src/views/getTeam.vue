@@ -23,10 +23,10 @@
 <script>
 import Vue from "vue";
 import VModal from "vue-js-modal";
-import teamList from "@/components/team/teamList.vue";
-import TeamModal from "@/components/TeamModal.vue";
-import UserList from "@/components/team/UserList.vue";
-import teamDetail from "@/components/team/teamDetail.vue";
+import teamList from "@/components/myteam/teamList.vue";
+import TeamModal from "@/components/myteam/TeamModal.vue";
+import UserList from "@/components/myteam/UserList.vue";
+import teamDetail from "@/components/myteam/teamDetail.vue";
 Vue.use(VModal);
 
 export default {
