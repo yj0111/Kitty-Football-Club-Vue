@@ -101,7 +101,7 @@ export default {
       const dateObj = new Date(
         parseInt(`20${year}`, 10) - 1,
         parseInt(month, 10) - 1,
-        parseInt(day, 10) + 1,
+        parseInt(day, 10) + 2,
         parseInt(hour, 10),
         parseInt(minute, 10)
       );
