@@ -97,7 +97,6 @@ export default {
       return `${datePart}\n${timePart}`;
     },
     openModal(gather) {
-      console.log("박스 클릭했어요 제발");
       this.$emit("box-clicked", gather.gather_id);
     },
     changedateM() {
